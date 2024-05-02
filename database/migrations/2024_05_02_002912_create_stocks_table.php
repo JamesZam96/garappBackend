@@ -12,11 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('stocks', function (Blueprint $table) {
-            $table->bigIncrements('idstock');
-            $table->unsignedBigInteger('idproductservice');
-            $table->unsignedBigInteger('idcompany');
-            $table->foreign('idproductservice')->references('idproductservice')->on('productservices')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idcompany')->references('idcompany')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+            $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('service_id');
+            $table->unsignedBigInteger('company_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
