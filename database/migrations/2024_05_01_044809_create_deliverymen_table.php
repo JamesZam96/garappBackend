@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('deliverymen', function (Blueprint $table) {
-            $table->bigIncrements('iddeliveryman');
+            $table->id();
             $table->integer('licenseNumber');
-            $table->unsignedBigInteger('idperson')->unique();
-            $table->unsignedBigInteger('idvehicle')->unique();
+            $table->unsignedBigInteger('person_id')->unique();
+            $table->unsignedBigInteger('vehicle_id')->unique();
             $table->timestamps();
-            $table->foreign('idperson')->references('idperson')->on('people')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idvehicle')->references('idvehicle')->on('vehicles')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

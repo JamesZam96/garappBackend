@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orderdetails', function (Blueprint $table) {
-            $table->bigIncrements('idorderdetail');
+            $table->id();
             $table->integer('quantity');
             $table->integer('unitprice');
             $table->integer('subtotal');
-            $table->unsignedBigInteger('idorder')->unique();
-            $table->unsignedBigInteger('idbill')->unique();
-            $table->unsignedBigInteger('idproductservice')->unique();
-            $table->foreign('idorder')->references('idorder')->on('orders')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idbill')->references('idbill')->on('bills')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idproductservice')->references('idproductservice')->on('productservices')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('border_id')->unique();
+            $table->unsignedBigInteger('bill_id')->unique();
+            $table->unsignedBigInteger('productservice_id')->unique();
+            $table->foreign('border_id')->references('idorder')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('bill_id')->references('idbill')->on('bills')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('productservice_id')->references('idproductservice')->on('productservices')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
