@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personas</title>
 </head>
+
 <body>
     <h1>Personas registradas</h1>
     @foreach ($people as $person)
@@ -14,10 +15,10 @@
         <td>{{$person->address}}</td>
         <td>{{$person->phoneNumber}}</td>
         <td>{{$person->email}}</td>
-        <td><a href="{{route('person.show',$person->idperson)}}">Mostrar</a></td>
-        <td><a href="{{route('person.edit',$person->idperson)}}">Editar</a></td>
+        <td><a href="{{route('person.show',$person->id)}}">Mostrar</a></td>
+        <td><a href="{{route('person.edit',$person->id)}}">Editar</a></td>
         <td>
-            <form action="{{route('person.destroy',$person->idperson)}}" method="POST">
+            <form action="{{route('person.destroy',$person->id)}}" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit">Eliminar</button>

@@ -20,11 +20,12 @@ class PersonController extends Controller
         $person->phoneNumber = $request->phoneNumber;
         $person->email = $request->email;
         $person->save();
-        return redirect()->route('person.create');
+        //return redirect()->route('person.create');
+        return response()->json(['message' => 'La persona ha sido creada', 'data' => $person]); 
     }
 
     public function index(){
-        $people = Person::orderBy('idperson','asc')->get();
+        $people = Person::orderBy('id','asc')->get();
         return view('people.list', compact('people'));
     }
 
