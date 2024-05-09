@@ -6,7 +6,7 @@
     <title>Mostrar</title>
 </head>
 <body>
-    <h1>Persona</h1>
-    {{$person}}
+    <h1>Empresas</h1>
+    {{$company}}
 </body>
 </html>

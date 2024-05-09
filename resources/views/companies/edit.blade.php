@@ -6,29 +6,24 @@
     <title>Editar</title>
 </head>
 <body>
-    <h1>Registrar persona</h1>
-    <form action="{{route('person.update', $person)}}" method="POST" enctype="multipart/form-data">
+    <h1>Registrar Categoria</h1>
+    <form action="{{route('company.update', $person)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('put')
-        <label for="">Escribe tu nombre</label>
-        <input type="text" name="name" value="{{old('name',$person->name)}}">
+        <label for="">Nit:</label>
+        <input type="text" name="nit" value="{{old('name',$company->nit)}}">
         <br>
         <br>
-        <label for="">Escribe tu apellido</label>
-        <input type="text" name="lastname" value="{{old('lastname',$person->lastname)}}">
+        <label for="">Nombre</label>
+        <input type="text" name="companyName" value="{{old('name',$company->companyName)}}">
         <br>
         <br>
-        <label for="">Escribe tu direcion</label>
-        <input type="text" name="address" value="{{old('address',$person->address)}}">
+        <label for="">Direccion</label>
+        <input type="text" name="address" value="{{old('name',$company->address)}}">
         <br>
         <br>
-        <label for="">Escribe tu telefono</label>
-        <input type="text" name="phoneNumber" value="{{old('phoneNumber',$person->phoneNumber)}}">
-        <br>
-        <br>
-        <label for="">Escribe tu email</label>
-        <input type="email" name="email" value="{{old('email',$person->email)}}">
-        <br>
+        <label for="">Correo</label>
+        <input type="text" name="email" value="{{old('name',$company->email)}}">
         <br>
         <button type="submit">Actualizar</button>
     </form>

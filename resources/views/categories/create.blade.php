@@ -10,13 +10,6 @@
     <h1>Registrar Categoria</h1>
     <form action="{{route('category.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <select name="product_id">
-            @foreach($products as $product)
-                <option value="{{ $product->id }}">{{ $product->name }} - {{ $product->description }}- {{ $product->price }}</option>
-            @endforeach
-        </select>
-
-        <br><br>
         <label for="">Nombre categoria:</label>
         <input type="text" name="name">
         <br>

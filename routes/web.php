@@ -49,6 +49,14 @@ Route::get('category/{category}',[CategoryController::class,'show'])->name('cate
 Route::get('category/{category}/edit',[CategoryController::class,'edit'])->name('category.edit');
 Route::put('category/{category}',[CategoryController::class,'update'])->name('category.update');
 Route::delete('category/{category}',[CategoryController::class,'destroy'])->name('category.destroy');
+// Company routes
+Route::get('company/create',[CompanyController::class,'create'])->name('company.create');
+Route::post('company/store',[CompanyController::class,'store'])->name('company.store');
+Route::get('company/list',[CompanyController::class,'index'])->name('company.index');
+Route::get('company/{company}',[CompanyController::class,'show'])->name('company.show');
+Route::get('company/{company}/edit',[CompanyController::class,'edit'])->name('company.edit');
+Route::put('company/{company}',[CompanyController::class,'update'])->name('company.update');
+Route::delete('company/{company}',[CompanyController::class,'destroy'])->name('company.destroy');
 
 // Token
 Route::get('generate/token',[TokenController::class,'csrfToken']);

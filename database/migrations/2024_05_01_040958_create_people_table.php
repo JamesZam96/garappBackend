@@ -16,7 +16,7 @@ return new class extends Migration
             $table->String('name');
             $table->String('lastname');
             $table->String('address');
-            $table->integer('phoneNumber',10);
+            $table->integer('phoneNumber');
             $table->String('email');
             $table->timestamps();
         });

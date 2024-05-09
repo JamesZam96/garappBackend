@@ -12,15 +12,13 @@ class CategoryController extends Controller
         $products= Product::all();
         $categories=Category::all();
     
-        return view('categories.create',compact('products','categories'));
+        return view('categories.create');
     }
 
     public function store(Request $request){
         $category = new Category();
         $category->name=$request->name;
         $category->description=$request->description;
-        $category->product_id=$request->product_id;
-    
         $category->save();
         return redirect()->route('category.create');
     }

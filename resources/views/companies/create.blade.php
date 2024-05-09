@@ -4,31 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registar persona</title>
+    <title>Registar Compañia</title>
 </head>
 <body>
-    <h1>Registrar persona</h1>
-    <form action="{{route('person.store')}}" method="POST" enctype="multipart/form-data">
+    <h1>Registrar Compañia</h1>
+    <form action="{{route('company.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <label for="">Escribe tu nombre</label>
-        <input type="text" name="name">
+        <label for="">Nit:</label>
+        <input type="text" name="nit">
         <br>
         <br>
-        <label for="">Escribe tu apellido</label>
-        <input type="text" name="lastname">
+        <label for="">Nombre</label>
+        <input type="text" name="companyName">
         <br>
         <br>
-        <label for="">Escribe tu direcion</label>
+        <label for="">Direccion</label>
         <input type="text" name="address">
         <br>
         <br>
-        <label for="">Escribe tu telefono</label>
-        <input type="text" name="phoneNumber">
-        <br>
-        <br>
-        <label for="">Escribe tu email</label>
-        <input type="email" name="email">
-        <br>
+        <label for="">Correo</label>
+        <input type="text" name="email">
         <br>
         <button type="submit">Registrar</button>
     </form>

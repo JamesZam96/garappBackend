@@ -17,6 +17,11 @@ return new class extends Migration
             $table->String('description');
             $table->integer('price');
             $table->timestamps();
+            $table->unsignedBigInteger('company_id');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 
