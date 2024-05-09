@@ -17,11 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('vehicle_id')->unique();
             $table->timestamps();
             $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade')->onUpdate('cascade');
-<<<<<<< HEAD
-            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade')->onUpdate('cascade');  
-=======
-        
->>>>>>> 052f78ff4da94da588fc70930b0daddf59fa695f
+    
         });
     }
 
