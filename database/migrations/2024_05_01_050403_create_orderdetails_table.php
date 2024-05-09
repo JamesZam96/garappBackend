@@ -16,6 +16,15 @@ return new class extends Migration
             $table->integer('quantity');
             $table->integer('unitprice');
             $table->integer('subtotal');
+<<<<<<< HEAD
+=======
+            $table->unsignedBigInteger('border_id')->unique();
+            $table->unsignedBigInteger('bill_id')->unique();
+            $table->unsignedBigInteger('productservice_id')->unique();
+            $table->foreign('border_id')->references('idorder')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('bill_id')->references('idbill')->on('bills')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('productservice_id')->references('idproductservice')->on('productservices')->onDelete('cascade')->onUpdate('cascade');
+>>>>>>> 052f78ff4da94da588fc70930b0daddf59fa695f
         });
     }
 
