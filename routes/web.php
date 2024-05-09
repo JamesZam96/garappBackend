@@ -25,13 +25,13 @@ Route::put('vehicle/{vehicle}',[VehicleController::class,'update'])->name('vehic
 Route::delete('vehicle/{vehicle}',[VehicleController::class,'destroy'])->name('vehicle.destroy');
 
 // Customer routes
-Route::get('customer/create',[VehicleController::class,'create'])->name('customer.create');
-Route::post('customer/store',[VehicleController::class,'store'])->name('customer.store');
-Route::get('customer/list',[VehicleController::class,'index'])->name('customer.index');
-Route::get('customer/{customer}',[VehicleController::class,'show'])->name('customer.show');
-Route::get('customer/{customer}/edit',[VehicleController::class,'edit'])->name('customer.edit');
-Route::put('customer/{customer}',[VehicleController::class,'update'])->name('customer.update');
-Route::delete('customer/{customer}',[VehicleController::class,'destroy'])->name('customer.destroy');
+Route::get('customer/create',[CustomerController::class,'create'])->name('customer.create');
+Route::post('customer/store',[CustomerController::class,'store'])->name('customer.store');
+Route::get('customer/list',[CustomerController::class,'index'])->name('customer.index');
+Route::get('customer/{customer}',[CustomerController::class,'show'])->name('customer.show');
+Route::get('customer/{customer}/edit',[CustomerController::class,'edit'])->name('customer.edit');
+Route::put('customer/{customer}',[CustomerController::class,'update'])->name('customer.update');
+Route::delete('customer/{customer}',[CustomerController::class,'destroy'])->name('customer.destroy');
 
 // Token
 Route::get('generate/token',[TokenController::class,'csrfToken']);

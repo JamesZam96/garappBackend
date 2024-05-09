@@ -10,24 +10,22 @@
     <h1>Registrar cliente</h1>
     <form action="{{route('customer.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
-        <label for="">Escribe tu nombre</label>
-        <input type="text" name="name">
+        <label for="">Selecciona la persona</label>
+        <select name="person_id" id="">
+            <option value="" hidden>Seleccione</option>
+            @foreach ($people as $person)
+                <option value="{{$person->id}}">{{$person->id}}-{{$person->name}}</option>
+            @endforeach 
+        </select>
         <br>
         <br>
-        <label for="">Escribe tu apellido</label>
-        <input type="text" name="lastname">
-        <br>
-        <br>
-        <label for="">Escribe tu direcion</label>
-        <input type="text" name="address">
-        <br>
-        <br>
-        <label for="">Escribe tu telefono</label>
-        <input type="text" name="phoneNumber">
-        <br>
-        <br>
-        <label for="">Escribe tu email</label>
-        <input type="email" name="email">
+        <label for="">Seleccione el vehículo</label>
+        <select name="vehicle_id" id="">
+            <option value="" hidden>Seleccione</option>
+            @foreach ($vehicles as $vehicle)
+                <option value="{{$vehicle->id}}">{{$vehicle->id}}-{{$vehicle->brand}}</option>
+            @endforeach
+        </select>
         <br>
         <br>
         <button type="submit">Registrar</button>

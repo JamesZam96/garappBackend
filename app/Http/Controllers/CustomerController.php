@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Person;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
     //
     public function create(){
-        return view('customers.create');
+        $people = Person::all();
+        $vehicles = Vehicle::all();
+        return view('customers.create',compact('people','vehicles'));
     }
 
     public function store(Request $request){
@@ -17,7 +21,7 @@ class CustomerController extends Controller
         $customer->person_id = $request->person_id;
         $customer->vehicle_id = $request->vehicle_id;
         $customer->save();
-        return redirect()->route('customers.create');
+        return redirect()->route('customer.create');
     }
 
     public function index(){
@@ -26,11 +30,11 @@ class CustomerController extends Controller
     }
 
     public function show(Customer $customer){
-        return view('customers.show', compact('custome$customer'));
+        return view('customers.show', compact('customer'));
     }
 
     public function edit(Customer $customer){
-        return view('customers.edit', compact('custome$customer'));
+        return view('customers.edit', compact('customer'));
     }
 
     public function update(Request $request,Customer $customer){

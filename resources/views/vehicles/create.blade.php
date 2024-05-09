@@ -7,7 +7,7 @@
     <title>Registar vehiculo</title>
 </head>
 <body>
-    <h1>Registrar persona</h1>
+    <h1>Registrar vehículo</h1>
     <form action="{{route('vehicle.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="">Escribe la marca</label>
