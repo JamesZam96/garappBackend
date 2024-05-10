@@ -11,14 +11,14 @@
         @csrf
         @method('put')
         <label for="">Selecciona el id de la persona</label>
-        <select name="type" id="">
-            <option value="{{old('type',$vehicle->type)}}" hidden>{{old('type',$vehicle->type)}}</option>
+        <select name="person_id" id="">
+            <option value="{{old('person_id',$customer->person_id)}}" hidden>{{old('person_id',$customer->person_id)}}</option>
         </select>
         <br>
         <br>
         <label for="">Selecciona el id del vehiculo</label>
-        <select name="type" id="">
-            <option value="{{old('type',$vehicle->type)}}" hidden>{{old('type',$vehicle->type)}}</option>
+        <select name="vehicle_id" id="">
+            <option value="{{old('vehicle_id',$customer->vehicle_id)}}" hidden>{{old('vehicle_id',$customer->vehicle_id)}}</option>
         </select>
         <br>
         <br>

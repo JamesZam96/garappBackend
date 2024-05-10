@@ -36,3 +36,12 @@ Route::delete('customer/{customer}',[CustomerController::class,'destroy'])->name
 // Token
 Route::get('generate/token',[TokenController::class,'csrfToken']);
 
+// Deliveryman routes
+Route::get('deliveryman/create',[DeliverymanController::class,'create'])->name('deliveryman.create');
+Route::post('deliveryman/store',[DeliverymanController::class,'store'])->name('deliveryman.store');
+Route::get('deliveryman/list',[DeliverymanController::class,'index'])->name('deliveryman.index');
+Route::get('deliveryman/{deliveryman}',[DeliverymanController::class,'show'])->name('deliveryman.show');
+Route::get('deliveryman/{deliveryman}/edit',[DeliverymanController::class,'edit'])->name('deliveryman.edit');
+Route::put('deliveryman/{deliveryman}',[DeliverymanController::class,'update'])->name('deliveryman.update');
+Route::delete('deliveryman/{deliveryman}',[DeliverymanController::class,'destroy'])->name('deliveryman.destroy');
+
