@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use App\Models\Person;
+use App\Models\People;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ class CustomerController extends Controller
 {
     //
     public function create(){
-        $people = Person::all();
+        $people = People::all();
         $vehicles = Vehicle::all();
         return view('customers.create',compact('people','vehicles'));
     }

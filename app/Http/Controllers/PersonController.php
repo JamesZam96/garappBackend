@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Person;
+use App\Models\People;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class PersonController extends Controller
     }
 
     public function store(Request $request){
-        $person = new Person();
+        $person = new People();
         $person->name = $request->name;
         $person->lastname = $request->lastname;
         $person->address = $request->address;
@@ -24,20 +24,21 @@ class PersonController extends Controller
         return response()->json(['message' => 'La persona ha sido creada', 'data' => $person]); 
     }
 
-    public function index(){
-        $people = Person::orderBy('id','asc')->get();
-        return view('people.list', compact('people'));
-    }
+    // public function index(){
+    //     $people = People::orderBy('id','asc')->get();
+    //     return view('people.list', compact('people'));
+    // }
+    
 
-    public function show(Person $person){
+    public function show(People $person){
         return view('people.show', compact('person'));
     }
 
-    public function edit(Person $person){
+    public function edit(People $person){
         return view('people.edit', compact('person'));
     }
 
-    public function update(Request $request,Person $person){
+    public function update(Request $request,People $person){
         $person->name = $request->name;
         $person->lastname = $request->lastname;
         $person->address = $request->address;
@@ -47,7 +48,7 @@ class PersonController extends Controller
         return redirect()->route('person.index');
     }
 
-    public function destroy(Person $person){
+    public function destroy(People $person){
         $person->delete();
         return redirect()->route('person.index');
     }

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
+    protected $table = 'services';
+    protected  $guarded = [];
+
+    public function stocks(){
+        return $this->hasOne(Stock::class, 'stocks_id');
+    }
 }
