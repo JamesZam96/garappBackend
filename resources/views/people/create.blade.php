@@ -4,33 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registar persona</title>
+    <title>Pagina para grear un people</title>
 </head>
 <body>
-    <h1>Registrar persona</h1>
-    <form action="{{route('person.store')}}" method="POST" enctype="multipart/form-data">
+    <h1>Aqui podras crear un people</h1>
+    <form action="{{route('peoples.store')}}" method="POST">
         @csrf
-        <label for="">Escribe tu nombre</label>
-        <input type="text" name="name">
+        <label >Nombre completo
+            <br>
+            <input type="text" name="name" value="{{old('name')}}">
+        </label>
         <br>
+        @error('name')
+            <span>{{$message}}</span>
+        @enderror
+        <label >Apellido completo
+            <br>
+            <input type="text" name="lastname" value="{{old('lastname')}}">
+        </label>
         <br>
-        <label for="">Escribe tu apellido</label>
-        <input type="text" name="lastname">
+        @error('lastname')
+        <span>{{$message}}</span>
+        @enderror
+        <label >Ingresa tu direccion
+            <br>
+            <input type="text" name="address" value="{{old('address')}}">
+        </label>
+        @error('address')
+            <span>{{$message}}</span>
+        @enderror
         <br>
+        <label >Ingresa tu numero de telefono
+            <br>
+            <input type="number" name="phoneNumber" value="{{old('phoneNumber')}}">
+        </label>
+        @error('phoneNumber')
+            <span>{{$message}}</span>
+        @enderror
         <br>
-        <label for="">Escribe tu direcion</label>
-        <input type="text" name="address">
-        <br>
-        <br>
-        <label for="">Escribe tu telefono</label>
-        <input type="text" name="phoneNumber">
-        <br>
-        <br>
-        <label for="">Escribe tu email</label>
-        <input type="email" name="email">
-        <br>
-        <br>
-        <button type="submit">Registrar</button>
+        <label >Correo electronico
+            <br>
+            <input type="text" name="email" value="{{old('email')}}">
+        </label>
+        @error('email')
+            <span>{{$message}}</span>
+        @enderror
+        <br><br>
+        <button type="submit">crear</button>
     </form>
+    
 </body>
 </html>
