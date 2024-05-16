@@ -33,6 +33,23 @@ Route::get('/customer/{customer}/edit',[CustomerController::class,'edit'])->name
 Route::put('/customer/{customer}',[CustomerController::class,'update'])->name('customer.update');
 Route::delete('/customer/{customer}',[CustomerController::class,'destroy'])->name('customer.destroy');
 
+// Product routes
+Route::get('product/create',[ProductController::class,'create'])->name('product.create');
+Route::post('product/store',[ProductController::class,'store'])->name('product.store');
+Route::get('product/list',[ProductController::class,'index'])->name('product.index');
+Route::get('product/{product}',[ProductController::class,'show'])->name('product.show');
+Route::get('product/{product}/edit',[ProductController::class,'edit'])->name('product.edit');
+Route::put('product/{product}',[ProductController::class,'update'])->name('product.update');
+Route::delete('product/{product}',[ProductController::class,'destroy'])->name('product.destroy');
+// Category routes
+Route::get('category/create',[CategoryController::class,'create'])->name('category.create');
+Route::post('category/store',[CategoryController::class,'store'])->name('category.store');
+Route::get('category/list',[CategoryController::class,'index'])->name('category.index');
+Route::get('category/{category}',[CategoryController::class,'show'])->name('category.show');
+Route::get('category/{category}/edit',[CategoryController::class,'edit'])->name('category.edit');
+Route::put('category/{category}',[CategoryController::class,'update'])->name('category.update');
+Route::delete('category/{category}',[CategoryController::class,'destroy'])->name('category.destroy');
+
 // Token
 Route::get('/generate/token',[TokenController::class,'generateToken']);
 

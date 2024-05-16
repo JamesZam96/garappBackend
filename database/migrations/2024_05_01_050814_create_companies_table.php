@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->integer('nit');
-            $table->String('companyname');
+            $table->String('companyName');
             $table->String('address');
-            $table->String('correo');
+            $table->String('email');
         });
     }
 
