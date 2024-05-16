@@ -17,13 +17,9 @@ return new class extends Migration
             $table->date('date');
             $table->double('totalprice');
             $table->unsignedBigInteger('customer_id')->unique();
-<<<<<<< HEAD:database/migrations/2024_05_06_132855_bills.php
             $table->unsignedBigInteger('order_id')->unique();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
-=======
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
->>>>>>> 052f78ff4da94da588fc70930b0daddf59fa695f:database/migrations/2024_05_01_045118_create_bills_table.php
         });
     }
 
