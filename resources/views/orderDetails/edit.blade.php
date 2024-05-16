@@ -7,47 +7,31 @@
     <title>Editar</title>
 </head>
 <body>
-    <h1>En esta pagina podras editar un people</h1>
-    <form action="{{ route('peoples.update', $people) }}" method="POST">
+    <h1>En esta pagina podras editar una orden</h1>
+    <form action="{{ route('orders.update', $order) }}" method="POST">
     @csrf
-        @method('put')
-        <label >Nombre completo
+        @method('patch')
+        <label >Cantidad
             <br>
-            <input type="text" name="name" value="{{old('name',$people->name)}}">
+            <input type="text" name="quantity" value="{{old('quantity')}}">
         </label>
         <br>
-        @error('name')
+        @error('quantity')
             <span>{{$message}}</span>
         @enderror
-        <label >Apellido completo
+        <label >Precio unitario
             <br>
-            <input type="text" name="lastname" value="{{old('lastname',$people->lastname)}}">
+            <input type="text" name="unitprice" value="{{old('unitprice')}}">
         </label>
         <br>
-        @error('lastname')
+        @error('unitprice')
         <span>{{$message}}</span>
         @enderror
-        <label >Ingresa tu direccion
+        <label >subtotal
             <br>
-            <input type="text" name="address" value="{{old('address',$people->address)}}">
+            <input type="text" name="subtotal" value="{{old('subtotal')}}">
         </label>
-        @error('address')
-            <span>{{$message}}</span>
-        @enderror
-        <br>
-        <label >Ingresa tu numero de telefono
-            <br>
-            <input type="number" name="phoneNumber" value="{{old('phoneNumber',$people->phoneNumber)}}">
-        </label>
-        @error('phoneNumber')
-            <span>{{$message}}</span>
-        @enderror
-        <br>
-        <label >Correo electronico
-            <br>
-            <input type="text" name="email" value="{{old('email',$people->email)}}">
-        </label>
-        @error('email')
+        @error('subtotal')
             <span>{{$message}}</span>
         @enderror
         <br><br>

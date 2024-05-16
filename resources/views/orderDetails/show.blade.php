@@ -7,15 +7,15 @@
     <title>Bienvenido</title>
 </head>
 <body>
-    <h1>Bienvenido {{$people->name}} {{$people->lastname}}</h1>
-    <p>Tu direccion es {{$people->address}}</p>
-    <p>Tu numero de celular es {{$people->phoneNumber}}</p>
-    <p>Tu correo electronico es {{$people->email}}</p>
-    <a href="{{route('peoples.index')}}">Ir a la pagina principal</a>
+    <h1>orden numero {{$order->id}}</h1>
+    <p>la cantidad es{{$order->quantity}}</p>
+    <p>El precio unitario {{$order->unitprice}}</p>
+    <p>El subtotal {{$order->subtotal}}</p>
+    <a href="{{route('orders.index')}}">Ir a la pagina principal</a>
     <br><br>
-    <a href="{{route('peoples.edit' , $people)}}">Editar</a>
+    <a href="{{route('orders.edit' , $order)}}">Editar</a>
 
-    <form action="{{route('peoples.destroy', $people)}}" method="POST">
+    <form action="{{route('orders.destroy', $order)}}" method="POST">
         @csrf
         @method('DELETE')
     <br>

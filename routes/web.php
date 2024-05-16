@@ -32,6 +32,6 @@ Route::get('/orders/create', [OrderDetailController::class , 'create'])->name('o
 Route::post('/orders', [OrderDetailController::class, 'store'])->name('orders.store');// Define una ruta para almacenar los datos de una nueva persona
 Route::get('/orders/{id}', [OrderDetailController::class , 'show'])->name('orders.show');// Define una ruta para mostrar los detalles de una persona específica
 Route::get('/orders/{order}/edit', [OrderDetailController::class, 'edit'])->name('orders.edit');// Define una ruta para mostrar el formulario de edición de una persona específica
-Route::put('orders/{order}',[OrderDetailController::class, 'update'])->name('orders.update');// Define una ruta para actualizar los datos de una persona específica
+Route::patch('orders/{order}',[OrderDetailController::class, 'update'])->name('orders.update');// Define una ruta para actualizar los datos de una persona específica
 Route::delete('/orders/{id}', [OrderDetailController::class, 'destroy'])->name('orders.destroy');// Define una ruta para eliminar una persona específica
 //ruta de order

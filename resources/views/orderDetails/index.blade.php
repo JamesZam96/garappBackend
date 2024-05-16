@@ -10,7 +10,7 @@
     <h1>Registrate como gente</h1>
     <a href="{{route('orders.create')}}">crear un people</a>
     @foreach ($orders as $order)
-    <li><a href="{{route('orders.show', $order->id)}}">{{$order->name}}</a></li>
+    <li><a href="{{route('orders.show', $order->id)}}">{{$order->quantity}}</a></li>
         {{$orders->links()}}
     @endforeach
     
