@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('people_id')->unique();
-            $table->unsignedBigInteger('vehicle_id')->unique();
+            $table->unsignedBigInteger('people_id')->nullable(); // Agrega la columna people_id sin restricciones
+            $table->unsignedBigInteger('vehicle_id')->nullable()->default(null);
             $table->timestamps();
+        
+            // Agrega la restricción de clave externa después de haber creado la columna people_id
             $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('vehicle_id')->references('id')->on('vehicle')->onDelete('cascade')->onUpdate('cascade');  
+            $table->foreign('vehicle_id')->references('id')->on('vehicle')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

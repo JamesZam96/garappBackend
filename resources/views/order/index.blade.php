@@ -8,14 +8,13 @@
 </head>
 <body>
     <h1>Lista de Órdenes</h1>
-    <a href="{{ route('orders.create') }}">Crear un nuevo detalle de orden</a>
+    <a href="{{ route('order.create') }}">Crear una nueva orden</a>
     <ul>
         @foreach ($orders as $order)
             <li>
-                <a href="{{ route('orders.show', $order->id) }}">Detalle de Orden: {{ $order->id }}</a>
-                <p>Cantidad: {{ $order->quantity }}</p>
-                <p>Precio Unitario: {{ $order->unitprice }}</p>
-                <p>Subtotal: {{ $order->subtotal }}</p>
+                <a href="{{ route('order.show', $order->id) }}">Detalle de Orden: {{ $order->id }}</a>
+                <p>Fecha: {{ $order->date }}</p>
+                <p>Estado: {{ $order->state }}</p>
             </li>
         @endforeach
     </ul>

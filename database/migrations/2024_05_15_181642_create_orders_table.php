@@ -10,17 +10,19 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->date('date');
-            $table->String('state');
-            $table->timestamps();
-            $table->unsignedBigInteger('service_id')->unique();
-            $table->unsignedBigInteger('product_id')->unique();
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
-        });
+    {Schema::create('orders', function (Blueprint $table) {
+        $table->id();
+        $table->date('date');
+        $table->string('state');
+        $table->unsignedBigInteger('service_id')->nullable(); // Agrega la columna service_id sin restricciones
+        $table->unsignedBigInteger('product_id')->nullable()->default(null);
+        $table->timestamps();
+    
+        // Agrega la restricción de clave externa después de haber creado la columna service_id
+        $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+    });
+    
     }
 
     /**

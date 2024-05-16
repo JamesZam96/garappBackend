@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->String('name');
-            $table->String('description');
+            $table->string('name');
+            $table->string('description');
+            $table->unsignedBigInteger('product_id')->nullable(); // Agrega la columna product_id sin restricciones
+            $table->unsignedBigInteger('service_id')->nullable()->default(null);
             $table->timestamps();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('service_id');
+        
+            // Agrega la restricción de clave externa después de haber creado la columna product_id
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
         });

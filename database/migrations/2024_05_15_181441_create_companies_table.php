@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('nit');
             $table->String('companyname');
             $table->String('address');
-            $table->String('correo');
+            $table->String('email');
             $table->timestamps();
         });
     }

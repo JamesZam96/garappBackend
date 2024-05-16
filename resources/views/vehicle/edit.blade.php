@@ -4,55 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pagina para registrar un vehiculo</title>
+    <title>Editar Vehículo</title>
 </head>
 <body>
-    <h1>Aqui podras editar el vehiculo</h1>
-    <form action="{{route('vehicles.update', $vehicle->id)}}" method="POST">
+    <h1>Editar Vehículo</h1>
+    <form action="{{ route('vehicles.update', $vehicle->id) }}" method="POST">
         @csrf
-        @method('put')
-        <label >Marca
+        @method('PUT')
+        <label>Marca:
             <br>
-            <input type="text" name="brand" value="{{old('brand',$vehicle->brand)}}">
+            <input type="text" name="brand" value="{{ old('brand', $vehicle->brand) }}">
         </label>
         <br>
         @error('brand')
-            <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
-        <label >Modelo
+        <br>
+        <label>Modelo:
             <br>
-            <input type="text" name="model" value="{{old('model',$vehicle->model)}}">
+            <input type="text" name="model" value="{{ old('model', $vehicle->model) }}">
         </label>
         <br>
         @error('model')
-        <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
-        <label >Año
+        <br>
+        <label>Año:
             <br>
-            <input type="number" name="year" value="{{old('year',$vehicle->year)}}">
+            <input type="number" name="year" value="{{ old('year', $vehicle->year) }}">
         </label>
+        <br>
         @error('year')
-            <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
         <br>
-        <label >Ingresa la placa
+        <label>Placa:
             <br>
-            <input type="number" name="plate" value="{{old('plate',$vehicle->plate)}}">
+            <input type="text" name="plate" value="{{ old('plate', $vehicle->plate) }}">
         </label>
+        <br>
         @error('plate')
-            <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
         <br>
-        <label >Ingresa el tipo del vehiculo
+        <label>Tipo:
             <br>
-            <input type="text" name="type" value="{{old('type',$vehicle->type)}}">
+            <input type="text" name="type" value="{{ old('type', $vehicle->type) }}">
         </label>
+        <br>
         @error('type')
-            <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
         <br><br>
         <button type="submit">Actualizar</button>
     </form>
-    
 </body>
 </html>

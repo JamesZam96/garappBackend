@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('delivery', function (Blueprint $table) {
             $table->id();
             $table->integer('licenseNumber');
-            $table->unsignedBigInteger('people_id')->unique();
-            $table->unsignedBigInteger('vehicle_id')->unique();
+            $table->unsignedBigInteger('people_id')->nullable()->default(null);
+            $table->unsignedBigInteger('vehicle_id')->nullable()->default(null);
             $table->timestamps();
-            $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade')->onUpdate('cascade');
+        });
+        Schema::table('delivery', function (Blueprint $table) {
+            $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade')->onUpdate('cascade');          
             $table->foreign('vehicle_id')->references('id')->on('vehicle')->onDelete('cascade')->onUpdate('cascade');
         });
     }

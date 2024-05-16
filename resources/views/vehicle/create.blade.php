@@ -4,54 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pagina para registrar un vehiculo</title>
+    <title>Página para registrar un vehículo</title>
 </head>
 <body>
-    <h1>Aqui podras registrar</h1>
-    <form action="{{route('vehicles.store')}}" method="POST">
+    <h1>Aquí podrás registrar un nuevo vehículo</h1>
+    <form action="{{ route('vehicles.store') }}" method="POST">
         @csrf
-        <label >Marca
+        <label>Marca:
             <br>
-            <input type="text" name="brand" value="{{old('brand')}}">
+            <input type="text" name="brand" value="{{ old('brand') }}">
         </label>
         <br>
         @error('brand')
-            <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
-        <label >Marca
+        <br>
+        <label>Modelo:
             <br>
-            <input type="text" name="model" value="{{old('model')}}">
+            <input type="text" name="model" value="{{ old('model') }}">
         </label>
         <br>
         @error('model')
-        <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
-        <label >Año
+        <br>
+        <label>Año:
             <br>
-            <input type="number" name="year" value="{{old('year')}}">
+            <input type="number" name="year" value="{{ old('year') }}">
         </label>
+        <br>
         @error('year')
-            <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
         <br>
-        <label >Ingresa la placa
+        <label>Placa:
             <br>
-            <input type="number" name="plate" value="{{old('plate')}}">
+            <input type="text" name="plate" value="{{ old('plate') }}">
         </label>
+        <br>
         @error('plate')
-            <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
         <br>
-        <label >Ingresa el tipo del vehiculo
+        <label>Tipo:
             <br>
-            <input type="text" name="type" value="{{old('type')}}">
+            <input type="text" name="type" value="{{ old('type') }}">
         </label>
+        <br>
         @error('type')
-            <span>{{$message}}</span>
+            <span>{{ $message }}</span>
         @enderror
         <br><br>
-        <button type="submit">crear</button>
+        <button type="submit">Crear</button>
     </form>
-    
 </body>
 </html>

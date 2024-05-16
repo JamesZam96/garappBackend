@@ -10,17 +10,19 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('stocks', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('service_id');
-            $table->unsignedBigInteger('company_id');
-            $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
-        });
+    {Schema::create('stocks', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('product_id')->nullable();
+        $table->unsignedBigInteger('service_id')->nullable();
+        $table->unsignedBigInteger('company_id')->nullable();
+        $table->timestamps();
+    
+        // Agrega las restricciones de clave externa después de definir las columnas
+        $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
+        $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+    });
+    
     }
 
     /**

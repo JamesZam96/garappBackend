@@ -3,45 +3,115 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePeople;
+use App\Http\Services\DataServices;
 use App\Models\PeopleModel;
 use Illuminate\Http\Request;
 
 class PeopleController extends Controller
 {
-  public function index() {
-    $peoples = PeopleModel::orderBy('id', 'desc')->paginate();// Recupera todas las personas ordenadas por ID de forma descendente y paginadas
-    return view('people.index', compact('peoples'));// Devuelve la vista 'people.index' pasando las personas recuperadas
-  }
+    /**
+     * Servicio de datos para interactuar con el modelo PeopleModel.
+     *
+     * @var DataServices
+     */
+    protected $dataServices;
 
-  public function create(){ // Método para mostrar el formulario de creación de una nueva persona
-    return view('people.create');// Devuelve la vista 'people.create' para crear una nueva persona
-  }
+    /**
+     * Crea una nueva instancia del controlador.
+     *
+     * Inicializa el servicio de datos con el modelo PeopleModel.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->dataServices = new DataServices(new PeopleModel());
+    }
 
-  public function store(StorePeople $request){// Método para almacenar una nueva persona en la base de datos
-    $people = PeopleModel::create($request->all());// Valida los datos de la solicitud y crea una nueva persona
-    return redirect()->route('peoples.index');// Redirige al usuario a la ruta 'peoples.index' después de almacenar la persona
-  }
+    /**
+     * Muestra una lista de personas.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $peoples = $this->dataServices->getAll();
+        return view('people.index', compact('peoples'));
+    }
 
-  public function show($id){ // Método para mostrar los detalles de una persona específica
-    $people = PeopleModel::find($id);// Encuentra la persona por su ID y la pasa a la vista 'people.show'
-      return view('people.show', compact('people'));
-  }
+    /**
+     * Muestra el formulario para crear una nueva persona.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('people.create');
+    }
 
-  public function edit(PeopleModel $people) {// Método para mostrar el formulario de edición de una persona
-    return view('people.edit', compact('people'));// Pasa la persona a la vista 'people.edit' para su edición
-  }
+    /**
+     * Almacena una nueva persona en la base de datos.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        $people = $this->dataServices->create($request->all());
+        return redirect()->route('peoples.index');
+    }
 
-  public function update(StorePeople $request, PeopleModel $people){// Método para actualizar los datos de una persona en la base de datos
-    $people->update($request->all());// Valida los datos de la solicitud y actualiza la persona
-       return redirect()->route('peoples.index');// Redirige al usuario a la ruta 'peoples.index' después de actualizar la persona
-  }
+    /**
+     * Muestra los detalles de una persona específica.
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $people = $this->dataServices->getById($id);
+        return view('people.show', compact('people'));
+    }
 
-  public function destroy($id) {// Método para eliminar una persona de la base de datos
-    $people = PeopleModel::find($id);// Encuentra la persona por su ID y la elimina
-      if(!$people) { // Si la persona no existe, devuelve una respuesta JSON con un mensaje de error
-          return response()->json(['message' => 'No se encontró la persona'], 404);
-      }
-      $people->delete();// Elimina la persona y redirige al usuario a la ruta 'peoples.index'
-      return redirect()->route('peoples.index');
-  }
+    /**
+     * Muestra el formulario para editar una persona específica.
+     *
+     * @param  \App\Models\PeopleModel  $people
+     * @return \Illuminate\View\View
+     */
+    public function edit(PeopleModel $people)
+    {
+        return view('people.edit', compact('people'));
+    }
+
+    /**
+     * Actualiza los datos de una persona en la base de datos.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $id)
+    {
+        $people = $this->dataServices->update($id, $request->all());
+        if (!$people) {
+            abort(404, 'Order not found');
+        }
+        return redirect()->route('peoples.index');
+    }
+
+    /**
+     * Elimina una persona de la base de datos.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $people = $this->dataServices->delete($id);
+        if (!$people) {
+            abort(404, 'Order not found');
+        }
+        return redirect()->route('peoples.index');
+    }
 }

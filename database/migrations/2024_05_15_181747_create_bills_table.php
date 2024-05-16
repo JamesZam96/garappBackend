@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->date('date');
             $table->double('totalprice');
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->unsignedBigInteger('order_id')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('customer_id')->unique();
-            $table->unsignedBigInteger('order_id')->unique();
+        
+            // Agrega las restricciones de clave externa después de definir las columnas
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
         });
+        
     }
 
     /**
