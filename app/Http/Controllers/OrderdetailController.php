@@ -17,7 +17,7 @@ class OrderDetailController extends Controller
         $this->dataServices = new DataServices(new OrderDetailModel());
      }
     public function index(){
-        $orders = OrderDetailModel::orderBy('id', 'desc')->paginate();
+        $orders = $this->dataServices->getAll();
         return view('orderDetails.index', compact('orders'));
     }
 
@@ -26,7 +26,7 @@ class OrderDetailController extends Controller
       }
 
       public function store(Request $request){// Método para almacenar una nueva persona en la base de datos
-        $orders = OrderDetailModel::create($request->all());// Valida los datos de la solicitud y crea una nueva persona
+        $orders = $this->dataServices->create($request->all());// Valida los datos de la solicitud y crea una nueva persona
         return redirect()->route('orders.index');// Redirige al usuario a la ruta 'peoples.index' después de almacenar la persona
       }
       public function show($id){
@@ -34,10 +34,25 @@ class OrderDetailController extends Controller
         return view('orderDetails.show', compact('order'));
       }
 
-      public function edit(OrderDetailModel $orders){
-        return view('orderDetails.edit', compact('orders'));
+      public function edit(OrderDetailModel $order){
+        return view('orderDetails.edit', compact('order'));
 
       }
+      public function update(Request $request, $id)
+    {
+        $order = $this->dataServices->update($id, $request->all());
+        if (!$order) {
+            abort(404, 'Order not found');
+        }
+        return redirect()->route('orders.index');
+    }
+    public function destroy($id){
+      $order = $this->dataServices->delete($id);
+      if (!$order) {
+        abort(404, 'Order not found');
+    }
+    return redirect()->route('orders.index');
+    }
 
 
       
