@@ -6,39 +6,94 @@ use App\Http\Services\DataServices;
 use App\Models\OrderDetailModel;
 use Illuminate\Http\Request;
 
-
-
+/**
+ * Controlador para manejar los detalles de los pedidos.
+ *
+ * Este controlador gestiona las operaciones CRUD (crear, leer, actualizar, eliminar)
+ * relacionadas con los detalles de los pedidos en la aplicación.
+ */
 class OrderDetailController extends Controller
 {
-
+    /**
+     * Servicio de datos para el controlador.
+     *
+     * @var DataServices
+     */
     protected $dataServices;
-     public function __construct()
-     {
+
+    /**
+     * Constructor del controlador.
+     */
+    public function __construct()
+    {
+        // Inicializar el servicio de datos con el modelo OrderDetailModel
         $this->dataServices = new DataServices(new OrderDetailModel());
-     }
-    public function index(){
+    }
+
+    /**
+     * Mostrar una lista de todos los detalles de los pedidos.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index()
+    {
         $orders = $this->dataServices->getAll();
         return view('orderDetails.index', compact('orders'));
     }
 
-    public function create(){ 
-        return view('orderDetails.create');// Devuelve la vista 'people.create' para crear una nueva persona
-      }
+    /**
+     * Mostrar el formulario para crear un nuevo detalle de pedido.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function create()
+    {
+        return view('orderDetails.create');
+    }
 
-      public function store(Request $request){// Método para almacenar una nueva persona en la base de datos
-        $orders = $this->dataServices->create($request->all());// Valida los datos de la solicitud y crea una nueva persona
-        return redirect()->route('orders.index');// Redirige al usuario a la ruta 'peoples.index' después de almacenar la persona
-      }
-      public function show($id){
+    /**
+     * Almacenar un nuevo detalle de pedido en la base de datos.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        $orders = $this->dataServices->create($request->all());
+        return redirect()->route('orders.index');
+    }
+
+    /**
+     * Mostrar los detalles de un pedido específico.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function show($id)
+    {
         $order = $this->dataServices->getById($id);
         return view('orderDetails.show', compact('order'));
-      }
+    }
 
-      public function edit(OrderDetailModel $order){
+    /**
+     * Mostrar el formulario para editar un detalle de pedido existente.
+     *
+     * @param  OrderDetailModel  $order
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function edit(OrderDetailModel $order)
+    {
         return view('orderDetails.edit', compact('order'));
+    }
 
-      }
-      public function update(Request $request, $id)
+    /**
+     * Actualizar los detalles de un pedido en la base de datos.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $id)
     {
         $order = $this->dataServices->update($id, $request->all());
         if (!$order) {
@@ -46,14 +101,19 @@ class OrderDetailController extends Controller
         }
         return redirect()->route('orders.index');
     }
-    public function destroy($id){
-      $order = $this->dataServices->delete($id);
-      if (!$order) {
-        abort(404, 'Order not found');
-    }
-    return redirect()->route('orders.index');
-    }
 
-
-      
+    /**
+     * Eliminar un detalle de pedido de la base de datos.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $order = $this->dataServices->delete($id);
+        if (!$order) {
+            abort(404, 'Order not found');
+        }
+        return redirect()->route('orders.index');
+    }
 }
