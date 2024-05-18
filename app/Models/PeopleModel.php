@@ -11,7 +11,13 @@ class PeopleModel extends Model
     protected $table = 'people';
     protected $guarded = [];
 
-    public function delivery(){
-        return $this->hasMany(DeliveryModel::class, 'delivery_id');
+    public function customers()
+    {
+        return $this->hasMany(CustomerModel::class, 'customers_id');
+    }
+
+    public function deliveries()
+    {
+        return $this->hasMany(DeliveryModel::class, 'deliveries_id');
     }
 }

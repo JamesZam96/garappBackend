@@ -12,15 +12,18 @@ class CustomerModel extends Model
     protected $guarded = [];
 
    
-    public function bills(){
-        return $this->hasMany(BillModel::class , 'bills_id');
+    public function people()
+    {
+        return $this->belongsTo(PeopleModel::class, 'people_id');
     }
 
-    public function people(){
-        return $this->belongsTo(VehicleModel::class , 'people_id');
+    public function orders()
+    {
+        return $this->hasMany(OrderModel::class, 'customer_id');
     }
 
-    public function vehicles(){
-        return $this->belongsTo(VehicleModel::class , 'vehicle_id');
+    public function bills()
+    {
+        return $this->hasMany(BillModel::class, 'customer_id');
     }
 }

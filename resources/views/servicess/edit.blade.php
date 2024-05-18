@@ -10,7 +10,7 @@
     <h1>Aquí podrás editar el servicio</h1>
     <form action="{{ route('services.update', $service->id) }}" method="POST">
         @csrf
-        @method('put')
+        @method('patch')
         <label>Nombre
             <br>
             <input type="text" name="name" value="{{ old('name', $service->name) }}">

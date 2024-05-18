@@ -10,7 +10,7 @@
     <h1>Editar Producto</h1>
     <form action="{{ route('producs.update', $produc) }}" method="POST">
         @csrf
-        @method('put')
+        @method('patch')
         <label>Nombre:
             <br>
             <input type="text" name="name" value="{{ old('name', $produc->name) }}">

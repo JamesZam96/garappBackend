@@ -11,7 +11,13 @@ class ServiceModel extends Model
     protected $table = 'services';
     protected  $guarded = [];
 
-    public function stocks(){
-        return $this->hasOne(StockModel::class, 'stocks_id');
+    public function orders()
+    {
+        return $this->belongsToMany(OrderModel::class, 'order_service', 'service_id', 'order_id');
+    }
+
+    public function workshops()
+    {
+        return $this->belongsToMany(WorkshopsModel::class, 'workshops_id');
     }
 }

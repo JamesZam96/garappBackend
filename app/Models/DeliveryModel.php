@@ -11,11 +11,13 @@ class DeliveryModel extends Model
     protected $table = 'delivery';
     protected $guarded = [];
 
-    public function vehicles(){
-        return $this->belongsTo(VehicleModel::class , 'vehicle_id');
+    public function people()
+    {
+        return $this->belongsTo(PeopleModel::class, 'people_id');
     }
 
-    public function people(){
-        return $this->belongsTo(PeopleModel::class , 'people_id');
+    public function vehicle()
+    {
+        return $this->belongsTo(VehicleModel::class, 'vehicle_id');
     }
 }

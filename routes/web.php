@@ -12,7 +12,7 @@ Route::get('/peoples/create', [PeopleController::class , 'create'])->name('peopl
 Route::post('/peoples', [PeopleController::class, 'store'])->name('peoples.store'); // Almacena los datos de una nueva persona
 Route::get('/peoples/{id}', [PeopleController::class , 'show'])->name('peoples.show'); // Muestra los detalles de una persona específica
 Route::get('/peoples/{people}/edit', [PeopleController::class, 'edit'])->name('peoples.edit'); // Muestra el formulario de edición de una persona específica
-Route::put('peoples/{id}',[PeopleController::class, 'update'])->name('peoples.update'); // Actualiza los datos de una persona específica
+Route::patch('peoples/{id}',[PeopleController::class, 'update'])->name('peoples.update'); // Actualiza los datos de una persona específica
 Route::delete('/peoples/{id}', [PeopleController::class, 'destroy'])->name('peoples.destroy'); // Elimina una persona específica
 // Define las rutas relacionadas con el controlador PeopleController
 
@@ -22,7 +22,7 @@ Route::get('/vehicles/create', [VehicleController::class , 'create'])->name('veh
 Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicles.store'); // Almacena los datos de un nuevo vehículo
 Route::get('/vehicles/{id}', [VehicleController::class , 'show'])->name('vehicles.show'); // Muestra los detalles de un vehículo específico
 Route::get('/vehicles/{vehicle}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit'); // Muestra el formulario de edición de un vehículo específico
-Route::put('vehicles/{id}',[VehicleController::class, 'update'])->name('vehicles.update'); // Actualiza los datos de un vehículo específico
+Route::patch('vehicles/{id}',[VehicleController::class, 'update'])->name('vehicles.update'); // Actualiza los datos de un vehículo específico
 Route::delete('/vehicles/{id}', [VehicleController::class, 'destroy'])->name('vehicles.destroy'); // Elimina un vehículo específico
 // Define las rutas relacionadas con el controlador VehicleController
 

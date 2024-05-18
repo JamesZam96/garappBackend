@@ -12,11 +12,8 @@ class CategoryModel extends Model
     protected $table = 'categories';
     protected $guarded = [];
 
-    public function products(){
-        return $this->hasMany(StockModel::class, 'products_id');
-    }
-
-    public function services(){
-        return $this->hasMany(StockModel::class, 'services_id');
+    public function products()
+    {
+        return $this->belongsToMany(ProductModel::class, 'category_product', 'category_id', 'product_id');
     }
 }

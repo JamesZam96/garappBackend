@@ -10,7 +10,7 @@
     <h1>Editar Factura</h1>
     <form action="{{ route('bills.update', $bill) }}" method="POST">
         @csrf
-        @method('put')
+        @method('patch')
         <label>Fecha:
             <br>
             <input type="date" name="date" value="{{ old('date', $bill->date) }}">

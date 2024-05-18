@@ -11,7 +11,18 @@ class ProductModel extends Model
     protected $table = 'products';
     protected $guarded = [];
 
-    public function stocks(){
-        return $this->hasMany(StockModel::class, 'stocks_id');
+    public function warehouse()
+    {
+        return $this->belongsTo(WarehouseModel::class, 'warehouse_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(CategoryModel::class, 'category_product', 'product_id', 'category_id');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(OrderModel::class, 'order_product', 'product_id', 'order_id');
     }
 }
