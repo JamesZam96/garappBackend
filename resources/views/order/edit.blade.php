@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Editar Orden</h1>
-    <form action="{{ route('order.update', $order) }}" method="POST">
+    <form action="{{ route('orders.update', $order) }}" method="POST">
         @csrf
         @method('PATCH')
         

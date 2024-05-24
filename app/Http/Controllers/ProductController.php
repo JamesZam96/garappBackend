@@ -6,7 +6,7 @@ use App\Models\Produc;
 use App\Models\ProductModel;
 use Illuminate\Http\Request;
 
-class ProducController extends Controller
+class ProductController extends Controller
 {
     /**
      * Servicio de datos para interactuar con el modelo Produc.

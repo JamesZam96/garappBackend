@@ -27,13 +27,13 @@ Route::delete('/vehicles/{id}', [VehicleController::class, 'destroy'])->name('ve
 // Define las rutas relacionadas con el controlador VehicleController
 
 // Define las rutas relacionadas con el controlador OrderDetailController para las órdenes
-Route::get('/orders' , [OrderDetailController::class , 'index'])->name('orders.index'); // Muestra una lista de órdenes
-Route::get('/orders/create', [OrderDetailController::class , 'create'])->name('orders.create'); // Muestra el formulario para crear una nueva orden
-Route::post('/orders', [OrderDetailController::class, 'store'])->name('orders.store'); // Almacena los datos de una nueva orden
-Route::get('/orders/{id}', [OrderDetailController::class , 'show'])->name('orders.show'); // Muestra los detalles de una orden específica
-Route::get('/orders/{order}/edit', [OrderDetailController::class, 'edit'])->name('orders.edit'); // Muestra el formulario de edición de una orden específica
-Route::patch('orders/{id}',[OrderDetailController::class, 'update'])->name('orders.update'); // Actualiza los datos de una orden específica
-Route::delete('/orders/{id}', [OrderDetailController::class, 'destroy'])->name('orders.destroy'); // Elimina una orden específica
+Route::get('/orders' , [OrderController::class , 'index'])->name('orders.index'); // Muestra una lista de órdenes
+Route::get('/orders/create', [OrderController::class , 'create'])->name('orders.create'); // Muestra el formulario para crear una nueva orden
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store'); // Almacena los datos de una nueva orden
+Route::get('/orders/{id}', [OrderController::class , 'show'])->name('orders.show'); // Muestra los detalles de una orden específica
+Route::get('/orders/{order}/edit', [OrderController::class, 'edit'])->name('orders.edit'); // Muestra el formulario de edición de una orden específica
+Route::patch('orders/{id}',[OrderController::class, 'update'])->name('orders.update'); // Actualiza los datos de una orden específica
+Route::delete('/orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy'); // Elimina una orden específica
 // Define las rutas relacionadas con el controlador OrderDetailController para las órdenes
 
 // Define las rutas relacionadas con el controlador DeliveryController para las entregas
@@ -58,13 +58,13 @@ Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('
 // Define las rutas relacionadas con el controlador CustomerController para los clientes
 
 // Define las rutas relacionadas con el controlador CompanyController para las compañías
-Route::get('/companys', [CompanyController::class, 'index'])->name('companys.index'); // Muestra una lista de compañías
-Route::get('/companys/create', [CompanyController::class, 'create'])->name('companys.create'); // Muestra el formulario para crear una nueva compañía
-Route::post('/companys', [CompanyController::class, 'store'])->name('companys.store'); // Almacena los datos de una nueva compañía
-Route::get('/companys/{id}', [CompanyController::class, 'show'])->name('companys.show'); // Muestra los detalles de una compañía específica
-Route::get('/companys/{company}/edit', [CompanyController::class, 'edit'])->name('companys.edit'); // Muestra el formulario de edición de una compañía específica
-Route::patch('/companys/{id}', [CompanyController::class, 'update'])->name('companys.update'); // Actualiza los datos de una compañía específica
-Route::delete('/companys/{id}', [CompanyController::class, 'destroy'])->name('companys.destroy'); // Elimina una compañía específica
+Route::get('/warehouses', [WarehouseController::class, 'index'])->name('warehouses.index'); // Muestra una lista de compañías
+Route::get('/warehouses/create', [WarehouseController::class, 'create'])->name('warehouses.create'); // Muestra el formulario para crear una nueva compañía
+Route::post('/warehouses', [WarehouseController::class, 'store'])->name('warehouses.store'); // Almacena los datos de una nueva compañía
+Route::get('/warehouses/{id}', [WarehouseController::class, 'show'])->name('warehouses.show'); // Muestra los detalles de una compañía específica
+Route::get('/warehouses/{company}/edit', [WarehouseController::class, 'edit'])->name('warehouses.edit'); // Muestra el formulario de edición de una compañía específica
+Route::patch('/warehouses/{id}', [WarehouseController::class, 'update'])->name('warehouses.update'); // Actualiza los datos de una compañía específica
+Route::delete('/warehouses/{id}', [WarehouseController::class, 'destroy'])->name('warehouses.destroy'); // Elimina una compañía específica
 // Define las rutas relacionadas con el controlador CompanyController para las compañías
 
 // Define las rutas relacionadas con el controlador CategoryController para las categorías
@@ -89,23 +89,23 @@ Route::delete('/order/{id}', [OrderController::class, 'destroy'])->name('order.d
 
 
 // Define las rutas relacionadas con el controlador ProducController para los producs
-Route::get('/producs', [ProducController::class, 'index'])->name('producs.index'); // Muestra una lista de producs
-Route::get('/producs/create', [ProducController::class, 'create'])->name('producs.create'); // Muestra el formulario para crear un nuevo produc
-Route::post('/producs', [ProducController::class, 'store'])->name('producs.store'); // Almacena los datos de un nuevo produc
-Route::get('/producs/{id}', [ProducController::class, 'show'])->name('producs.show'); // Muestra los detalles de un produc específico
-Route::get('/producs/{produc}/edit', [ProducController::class, 'edit'])->name('producs.edit'); // Muestra el formulario de edición de un produc específico
-Route::patch('/producs/{id}', [ProducController::class, 'update'])->name('producs.update'); // Actualiza los datos de un produc específico
-Route::delete('/producs/{id}', [ProducController::class, 'destroy'])->name('producs.destroy'); // Elimina un produc específico
+Route::get('/products', [ProductController::class, 'index'])->name('products.index'); // Muestra una lista de products
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); // Muestra el formulario para crear un nuevo produc
+Route::post('/products', [ProductController::class, 'store'])->name('products.store'); // Almacena los datos de un nuevo produc
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show'); // Muestra los detalles de un produc específico
+Route::get('/products/{produc}/edit', [ProductController::class, 'edit'])->name('products.edit'); // Muestra el formulario de edición de un produc específico
+Route::patch('/products/{id}', [ProductController::class, 'update'])->name('products.update'); // Actualiza los datos de un produc específico
+Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('producs.destroy'); // Elimina un produc específico
 // Define las rutas relacionadas con el controlador ProducController para los producs
 
 // Define las rutas relacionadas con el controlador ServicesController para los servicios
-Route::get('/services', [ServicesController::class, 'index'])->name('services.index'); // Muestra una lista de servicios
-Route::get('/services/create', [ServicesController::class, 'create'])->name('services.create'); // Muestra el formulario para crear un nuevo servicio
-Route::post('/services', [ServicesController::class, 'store'])->name('services.store'); // Almacena los datos de un nuevo servicio
-Route::get('/services/{id}', [ServicesController::class, 'show'])->name('services.show'); // Muestra los detalles de un servicio específico
-Route::get('/services/{service}/edit', [ServicesController::class, 'edit'])->name('services.edit'); // Muestra el formulario de edición de un servicio específico
-Route::patch('/services/{id}', [ServicesController::class, 'update'])->name('services.update'); // Actualiza los datos de un servicio específico
-Route::delete('/services/{id}', [ServicesController::class, 'destroy'])->name('services.destroy'); // Elimina un servicio específico
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index'); // Muestra una lista de servicios
+Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create'); // Muestra el formulario para crear un nuevo servicio
+Route::post('/services', [ServiceController::class, 'store'])->name('services.store'); // Almacena los datos de un nuevo servicio
+Route::get('/services/{id}', [ServiceController::class, 'show'])->name('services.show'); // Muestra los detalles de un servicio específico
+Route::get('/services/{service}/edit', [ServiceController::class, 'edit'])->name('services.edit'); // Muestra el formulario de edición de un servicio específico
+Route::patch('/services/{id}', [ServiceController::class, 'update'])->name('services.update'); // Actualiza los datos de un servicio específico
+Route::delete('/services/{id}', [ServiceController::class, 'destroy'])->name('services.destroy'); // Elimina un servicio específico
 // Define las rutas relacionadas con el controlador ServicesController para los servicios
 
 // Define las rutas relacionadas con el controlador BillController para las facturas
@@ -118,6 +118,12 @@ Route::patch('/bills/{id}', [BillController::class, 'update'])->name('bills.upda
 Route::delete('/bills/{id}', [BillController::class, 'destroy'])->name('bills.destroy'); // Elimina una factura específica
 // Define las rutas relacionadas con el controlador BillController para las facturas
 
+Route::get('/auths', [AuthController::class, 'index'])->name('auths.index');
+// Route::get('/register', [AuthController::class, 'create'])->name('auths.create');
+// Route::post('/register', [AuthController::class , 'register'])->name('auths.store');
+Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('auths.register');
+Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('auths.login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('auths.logout')->middleware('auth');
 
 
 

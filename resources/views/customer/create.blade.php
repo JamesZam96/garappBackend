@@ -10,6 +10,13 @@
     <h1>Crear Cliente</h1>
     <form action="{{ route('customers.store') }}" method="POST">
         @csrf
+        <label for="">Selecciona la persona</label>
+        <select name="people_id" id="">
+            <option value="" hidden>Seleccione</option>
+            @foreach ($people as $people)
+                <option value="{{$people->id}}">{{$people->id}}-{{$people->name}}</option>
+            @endforeach 
+        </select>
         <button type="submit">Crear</button>
     </form>
 </body>

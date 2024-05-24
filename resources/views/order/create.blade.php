@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Crear una Orden</h1>
-    <form action="{{ route('order.store') }}" method="POST">
+    <form action="{{ route('orders.store') }}" method="POST">
         @csrf <!-- Directiva de Blade para agregar el token CSRF -->
 
         <label>Fecha:

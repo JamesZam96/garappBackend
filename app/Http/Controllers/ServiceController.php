@@ -6,7 +6,7 @@ use App\Http\Services\DataServices;
 use App\Models\ServiceModel;
 use Illuminate\Http\Request;
 
-class ServicesController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Servicio de datos para interactuar con el modelo ServiceModel.

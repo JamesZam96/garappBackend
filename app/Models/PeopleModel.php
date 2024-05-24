@@ -13,7 +13,7 @@ class PeopleModel extends Model
 
     public function customers()
     {
-        return $this->hasMany(CustomerModel::class, 'customers_id');
+        return $this->hasOne(CustomerModel::class, 'people_id');
     }
 
     public function deliveries()

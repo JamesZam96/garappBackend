@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Services\DataServices;
 use App\Models\CustomerModel;
+use App\Models\PeopleModel;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -18,11 +19,13 @@ class CustomerController extends Controller
         return view('Customer.index', compact('customers'));// Devuelve la vista 'vehicle.index' pasando las personas recuperadas
       }
       public function create(){ // Método para mostrar el formulario de creación de una nueva persona
-        return view('customer.create');// Devuelve la vista 'people.create' para crear una nueva persona
+        $people = PeopleModel::all();
+        return view('customer.create', compact('people'));// Devuelve la vista 'people.create' para crear una nueva persona
       }
 
       public function store(Request $request){// Método para almacenar una nueva persona en la base de datos
         $customer =  $this->dataServices->create($request->all());// Valida los datos de la solicitud y crea una nueva persona
+        // $customer->people()->create(['people_id'=>$request->people_id]);
         return redirect()->route('customers.index');// Redirige al usuario a la ruta 'peoples.index' después de almacenar la persona
       }
       public function show($id){ // Método para mostrar los detalles de una persona específica
@@ -44,6 +47,6 @@ class CustomerController extends Controller
           if(!$customer) { // Si la persona no existe, devuelve una respuesta JSON con un mensaje de error
             abort(404, 'Order not found');
           }
-          return redirect()->route('customer.index');
+          return redirect()->route('customers.index');
       }
 }

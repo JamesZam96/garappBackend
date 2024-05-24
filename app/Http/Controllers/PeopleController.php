@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePeople;
 use App\Http\Services\DataServices;
+use App\Models\CustomerModel;
 use App\Models\PeopleModel;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,8 @@ class PeopleController extends Controller
     public function index()
     {
         $peoples = $this->dataServices->getAll();
-        return view('people.index', compact('peoples'));
+        $customers = CustomerModel::with('people')->get();
+        return view('people.index', compact('peoples', 'customers'));
     }
 
     /**
