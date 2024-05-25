@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAuth;
 use App\Http\Services\DataServices;
 use App\Models\AuthModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +27,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->dataServices = new DataServices(new AuthModel());
+        $this->dataServices = new DataServices(new User());
     }
 
     /**
@@ -59,7 +60,13 @@ class AuthController extends Controller
         ];
         $register = $this->dataServices->create($formateData);
 
-        return redirect()->route('auths.dash');
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            return view('auth.dash', compact('user'));
+        } else {
+            return response()->json(['message' => 'Credenciales inválidas'], 404);
+        }
     }
 
     /**
@@ -93,4 +100,6 @@ class AuthController extends Controller
         Auth::logout();
         return view('Auth.index');
     }
+
+    
 }

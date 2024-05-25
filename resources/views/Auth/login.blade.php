@@ -20,7 +20,7 @@
         @enderror
         <label >Contraseña
             <br>
-            <input type="text" name="password" value="{{old('password')}}">
+            <input type="password" name="password" value="{{old('password')}}">
         </label>
         <br>
         @error('password')

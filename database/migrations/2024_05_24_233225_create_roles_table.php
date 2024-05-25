@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Ejecute las migraciones.
      */
     public function up(): void
     {
@@ -88,12 +88,18 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Revertir las migraciones.
      */
     public function down(): void
     {
         Schema::dropIfExists('roles');
         Schema::dropIfExists('permissions');
         Schema::dropIfExists('roles_permissions');
+        Schema::dropIfExists('roles_users');
+        Schema::dropIfExists('roles_workshops');
+        Schema::dropIfExists('roles_warehouses');
+        Schema::dropIfExists('roles_deliveries');
+        Schema::dropIfExists('roles_customers');
+        
     }
 };

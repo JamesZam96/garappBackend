@@ -59,8 +59,7 @@ Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('
 
 // Define las rutas relacionadas con el controlador CompanyController para las compañías
 Route::get('/warehouses', [WarehouseController::class, 'index'])->name('warehouses.index'); // Muestra una lista de compañías
-Route::get('/warehouses/create', [WarehouseController::class, 'create'])->name('warehouses.create'); // Muestra el formulario para crear una nueva compañía
-Route::post('/warehouses', [WarehouseController::class, 'store'])->name('warehouses.store'); // Almacena los datos de una nueva compañía
+Route::match(['get','post'], '/warehouses', [WarehouseController::class, 'store'])->name('warehouses.create')->middleware('verify.role:administrador'); // Muestra el formulario para crear una nueva compañía
 Route::get('/warehouses/{id}', [WarehouseController::class, 'show'])->name('warehouses.show'); // Muestra los detalles de una compañía específica
 Route::get('/warehouses/{company}/edit', [WarehouseController::class, 'edit'])->name('warehouses.edit'); // Muestra el formulario de edición de una compañía específica
 Route::patch('/warehouses/{id}', [WarehouseController::class, 'update'])->name('warehouses.update'); // Actualiza los datos de una compañía específica
@@ -124,8 +123,5 @@ Route::get('/auths', [AuthController::class, 'index'])->name('auths.index');
 Route::match(['get', 'post'], '/register', [AuthController::class, 'register'])->name('auths.register');
 Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('auths.login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auths.logout')->middleware('auth');
-
-
-
 
 

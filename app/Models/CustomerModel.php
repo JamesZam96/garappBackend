@@ -66,6 +66,6 @@ class CustomerModel extends Model
      */
     public function role()
     {
-        return $this->belongsTo(RoleModel::class, 'role_id'); // Corregido el nombre de la columna
+        return $this->belongsToMany(RoleModel::class, 'roles_customers', 'role_id', 'customer_id');
     }
 }

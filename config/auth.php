@@ -41,21 +41,20 @@ return [
             'provider' => 'users',
         ],
     ],
-
-    /*
+/*
     |--------------------------------------------------------------------------
-    | User Providers
+    | Proveedores de usuarios
     |--------------------------------------------------------------------------
     |
-    | All authentication guards have a user provider, which defines how the
-    | users are actually retrieved out of your database or other storage
-    | system used by the application. Typically, Eloquent is utilized.
+    | Todos los guardias de autenticación tienen un proveedor de usuario, que define cómo
+    | los usuarios en realidad se recuperan de su base de datos u otro almacenamiento
+    | sistema utilizado por la aplicación. Normalmente se utiliza Eloquent.
     |
-    | If you have multiple user tables or models you may configure multiple
-    | providers to represent the model / table. These providers may then
-    | be assigned to any extra authentication guards you have defined.
+    | Si tiene varias tablas de usuarios o modelos, puede configurar varias
+| proveedores para representar el modelo/tabla. Estos proveedores pueden entonces
+    | se asignará a cualquier guardia de autenticación adicional que haya definido.
     |
-    | Supported: "database", "eloquent"
+    | Compatible: "base de datos", "elocuente"
     |
     */
 

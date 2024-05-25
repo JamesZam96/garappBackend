@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Jetstream\Rules\Role;
 
 /**
  * Class DeliveryModel
@@ -56,6 +57,6 @@ class DeliveryModel extends Model
      */
     public function role()
     {
-        return $this->belongsTo(RoleModel::class, 'role_id'); // Corregido el nombre de la columna
+        return $this->belongsToMany(RoleModel::class, 'roles_deliveries', 'role_id', 'delivery_id');
     }
 }

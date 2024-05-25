@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Crear un Almacén</h1>
-    <form action="{{ route('companys.store') }}" method="POST">
+    <form action="" method="POST">
         @csrf <!-- Directiva de Blade para agregar el token CSRF -->
 
         <label>NIT:
@@ -24,11 +24,11 @@
 
         <label>Nombre del Establecimiento:
             <br>
-            <input type="text" name="companyname" value="{{ old('companyname') }}">
+            <input type="text" name="name" value="{{ old('name') }}">
         </label>
         <br>
         <!-- Mostrar errores de validación -->
-        @error('companyname')
+        @error('name')
             <span>{{ $message }}</span>
             <br><br>
         @enderror
@@ -51,6 +51,17 @@
         <br>
         <!-- Mostrar errores de validación -->
         @error('email')
+            <span>{{ $message }}</span>
+            <br><br>
+        @enderror
+
+        <label>Telefono
+            <br>
+            <input type="text" name="phone" value="{{ old('phone') }}">
+        </label>
+        <br>
+        <!-- Mostrar errores de validación -->
+        @error('phone')
             <span>{{ $message }}</span>
             <br><br>
         @enderror

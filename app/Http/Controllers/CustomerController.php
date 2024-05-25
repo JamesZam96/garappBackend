@@ -1,52 +1,120 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Services\DataServices;
 use App\Models\CustomerModel;
 use App\Models\PeopleModel;
 use Illuminate\Http\Request;
 
+/**
+ * Class CustomerController
+ *
+ * Este controlador maneja las operaciones CRUD para el modelo Customer.
+ * Utiliza un servicio de datos para realizar operaciones en la base de datos.
+ */
 class CustomerController extends Controller
 {
+    /**
+     * @var DataServices
+     */
     protected $dataServices;
-    public function __construct()
-      {
-          // Inicializar el servicio de datos con el modelo OrderDetailModel
-          $this->dataServices = new DataServices(new CustomerModel());
-      }
-      public function index() {
-        $customers =  $this->dataServices->getAll();// Recupera todas las personas ordenadas por ID de forma descendente y paginadas
-        return view('Customer.index', compact('customers'));// Devuelve la vista 'vehicle.index' pasando las personas recuperadas
-      }
-      public function create(){ // Método para mostrar el formulario de creación de una nueva persona
-        $people = PeopleModel::all();
-        return view('customer.create', compact('people'));// Devuelve la vista 'people.create' para crear una nueva persona
-      }
 
-      public function store(Request $request){// Método para almacenar una nueva persona en la base de datos
-        $customer =  $this->dataServices->create($request->all());// Valida los datos de la solicitud y crea una nueva persona
-        // $customer->people()->create(['people_id'=>$request->people_id]);
-        return redirect()->route('customers.index');// Redirige al usuario a la ruta 'peoples.index' después de almacenar la persona
-      }
-      public function show($id){ // Método para mostrar los detalles de una persona específica
-        $customer =  $this->dataServices->getById($id);// Encuentra la persona por su ID y la pasa a la vista 'people.show'
-          return view('customer.show', compact('customer'));
-      }
-      public function edit(CustomerModel $customer) {// Método para mostrar el formulario de edición de una persona
-        return view('customer.edit', compact('customer'));// Pasa la persona a la vista 'people.edit' para su edición
-      }
-      public function update(Request $request, $id){// Método para actualizar los datos de una persona en la base de datos
-        $customer =  $this->dataServices->update($id, $request->all());// Valida los datos de la solicitud y actualiza la persona
+    /**
+     * Constructor de CustomerController.
+     *
+     * Inicializa el servicio de datos con el modelo CustomerModel.
+     */
+    public function __construct()
+    {
+        $this->dataServices = new DataServices(new CustomerModel());
+    }
+
+    /**
+     * Método para mostrar una lista de todos los clientes.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $customers = $this->dataServices->getAll();
+        return view('Customer.index', compact('customers'));
+    }
+
+    /**
+     * Método para mostrar el formulario de creación de un nuevo cliente.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        $people = PeopleModel::all();
+        return view('customer.create', compact('people'));
+    }
+
+    /**
+     * Método para almacenar un nuevo cliente en la base de datos.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        $this->dataServices->create($request->all());
+        return redirect()->route('customers.index');
+    }
+
+    /**
+     * Método para mostrar los detalles de un cliente específico.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $customer = $this->dataServices->getById($id);
+        return view('customer.show', compact('customer'));
+    }
+
+    /**
+     * Método para mostrar el formulario de edición de un cliente.
+     *
+     * @param CustomerModel $customer
+     * @return \Illuminate\View\View
+     */
+    public function edit(CustomerModel $customer)
+    {
+        return view('customer.edit', compact('customer'));
+    }
+
+    /**
+     * Método para actualizar los datos de un cliente en la base de datos.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $id)
+    {
+        $customer = $this->dataServices->update($id, $request->all());
         if (!$customer) {
-          abort(404, 'Order not found');
-      }
-        return redirect()->route('customer.index');// Redirige al usuario a la ruta 'peoples.index' después de actualizar la persona
-      }
-      public function destroy($id) {// Método para eliminar una persona de la base de datos
-        $customer =  $this->dataServices->delete($id);// Encuentra la persona por su ID y la elimina
-          if(!$customer) { // Si la persona no existe, devuelve una respuesta JSON con un mensaje de error
-            abort(404, 'Order not found');
-          }
-          return redirect()->route('customers.index');
-      }
+            abort(404, 'Customer not found');
+        }
+        return redirect()->route('customers.index');
+    }
+
+    /**
+     * Método para eliminar un cliente de la base de datos.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $customer = $this->dataServices->delete($id);
+        if (!$customer) {
+            abort(404, 'Customer not found');
+        }
+        return redirect()->route('customers.index');
+    }
 }
