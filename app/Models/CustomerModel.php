@@ -26,4 +26,8 @@ class CustomerModel extends Model
     {
         return $this->hasMany(BillModel::class, 'customer_id');
     }
+
+    public function role(){
+        return $this->belongsTo(RoleModel::class, 'roles_ customers');
+    }
 }

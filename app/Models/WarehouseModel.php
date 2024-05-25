@@ -15,4 +15,8 @@ class  WarehouseModel extends Model
     {
         return $this->hasMany(ProductModel::class, 'warehouse_id');
     }
+    public function role()
+    {
+        return $this->belongsTo(RoleModel::class, 'roles_warehouse');
+    }
 }

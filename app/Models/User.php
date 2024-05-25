@@ -18,4 +18,8 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    public function role(){
+        return $this->belongsTo(RoleModel::class, 'roles_users');
+    }
 }

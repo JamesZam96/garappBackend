@@ -17,4 +17,8 @@ class WorkshopsModel extends Model
         return $this->hasMany(ServiceModel::class, 'services_id');
     }
 
+    public function role()
+    {
+        return $this->belongsTo(RoleModel::class, 'roles_workshops');
+    }
 }

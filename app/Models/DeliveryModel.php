@@ -20,4 +20,8 @@ class DeliveryModel extends Model
     {
         return $this->belongsTo(VehicleModel::class, 'vehicle_id');
     }
+
+    public function role(){
+        return $this->belongsTo(RoleModel::class, 'roles_deliveries');
+    }
 }
