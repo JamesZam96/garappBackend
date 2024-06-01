@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Lista de Órdenes</h1>
-    <a href="{{ route('orders.create') }}">Crear una nueva orden</a>
+    <a href="/orders/create">Crear una nueva orden</a>
     <ul>
         @foreach ($orders as $order)
             <li>

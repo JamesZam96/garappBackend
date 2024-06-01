@@ -35,9 +35,9 @@ class DeliveryModel extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function people()
+    public function user()
     {
-        return $this->belongsTo(PeopleModel::class, 'people_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**

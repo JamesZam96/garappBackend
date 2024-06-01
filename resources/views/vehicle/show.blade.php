@@ -11,9 +11,9 @@
     <p>Año: {{ $vehicle->year }}</p>
     <p>Placa: {{ $vehicle->plate }}</p>
     <p>Tipo: {{ $vehicle->type }}</p>
-    <a href="{{ route('vehicles.index') }}">Ir a la página principal</a>
+    <a href="{{ route('vehicle.index') }}">Ir a la página principal</a>
     <br><br>
-    <a href="{{ route('vehicles.edit', $vehicle) }}">Editar</a>
+    <a href="{{ route('vehicles.update', $vehicle) }}">Editar</a>
 
     <form action="{{ route('vehicles.destroy', $vehicle) }}" method="POST">
         @csrf

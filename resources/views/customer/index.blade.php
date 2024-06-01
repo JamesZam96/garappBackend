@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Clientes</h1>
-    <a href="{{ route('customers.create') }}">Crear cliente</a>
+    <a href="/customers/create">Crear cliente</a>
     <ul>
         @foreach ($customers as $customer)
             <li><a href="{{ route('customers.show', $customer->id) }}">{{ $customer->id }}</a></li>

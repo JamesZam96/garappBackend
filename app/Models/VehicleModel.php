@@ -17,7 +17,7 @@ class VehicleModel extends Model
     /**
      * @var string La tabla asociada al modelo.
      */
-    protected $table = 'vehicle';
+    protected $table = 'vehicles';
 
     /**
      * @var array Los atributos que no son asignables en masa.

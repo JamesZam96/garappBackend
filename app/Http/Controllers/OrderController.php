@@ -37,17 +37,6 @@ class OrderController extends Controller
         $orders = $this->dataServices->getAll();
         return view('order.index', compact('orders'));
     }
-
-    /**
-     * Muestra el formulario para crear una nueva orden.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('order.create');
-    }
-
     /**
      * Almacena una nueva orden en la base de datos.
      *
@@ -56,6 +45,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->isMethod('get')) {
+            return view('order.create');
+        }
         $order = $this->dataServices->create($request->all());
         return redirect()->route('order.index');
     }

@@ -10,7 +10,7 @@
     <h1>Editar Vehículo</h1>
     <form action="{{ route('vehicles.update', $vehicle->id) }}" method="POST">
         @csrf
-        @method('PUT')
+        @method('patch')
         <label>Marca:
             <br>
             <input type="text" name="brand" value="{{ old('brand', $vehicle->brand) }}">

@@ -32,23 +32,28 @@ class User extends Authenticatable
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * Método para establecer la contraseña del usuario.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    // public function setPasswordAttribute($value)
-    // {
-    //     $this->attributes['password'] = Hash::make($value);
-    // }
-
     /**
      * Define una relación de pertenencia con el modelo RoleModel.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    public function profile()
+    {
+        return $this->belongsTo(ProfileModel::class, 'user_id');
+    }
+    
+    /**
+     * Relación uno a muchos con el modelo DeliveryModel.
+     *
+     * Una persona puede realizar múltiples entregas.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function deliveries()
+    {
+        return $this->hasMany(DeliveryModel::class, 'user_id');
+    }
+
     public function roles()
     {
         return $this->belongsToMany(RoleModel::class, 'roles_users', 'role_id', 'user_id');

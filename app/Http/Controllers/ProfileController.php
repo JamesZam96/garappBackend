@@ -6,9 +6,10 @@ use App\Http\Requests\StorePeople;
 use App\Http\Services\DataServices;
 use App\Models\CustomerModel;
 use App\Models\PeopleModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class PeopleController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Servicio de datos para interactuar con el modelo PeopleModel.
@@ -26,7 +27,7 @@ class PeopleController extends Controller
      */
     public function __construct()
     {
-        $this->dataServices = new DataServices(new PeopleModel());
+        $this->dataServices = new DataServices(new User());
     }
 
     /**
@@ -36,21 +37,10 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        $peoples = $this->dataServices->getAll();
+        $user = $this->dataServices->getAll();
         $customers = CustomerModel::with('people')->get();
-        return view('people.index', compact('peoples', 'customers'));
+        return view('people.index', compact('user', 'customers'));
     }
-
-    /**
-     * Muestra el formulario para crear una nueva persona.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('people.create');
-    }
-
     /**
      * Almacena una nueva persona en la base de datos.
      *
@@ -59,6 +49,11 @@ class PeopleController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->isMethod('get')) {
+
+            return view('people.create');
+        }
+
         $people = $this->dataServices->create($request->all());
         return redirect()->route('peoples.index');
     }

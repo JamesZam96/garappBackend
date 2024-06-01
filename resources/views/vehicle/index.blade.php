@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Lista de Vehículos</h1>
-    <a href="{{ route('vehicles.create') }}">Crear un nuevo vehículo</a>
+    <a href="/vehicles/create">Crear un nuevo vehículo</a>
     <ul>
         @foreach ($vehicles as $vehicle)
             <li>

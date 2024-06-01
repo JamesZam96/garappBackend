@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\Model;
  *
  * Modelo que representa las personas en la base de datos.
  */
-class PeopleModel extends Model
+class ProfileModel extends Model
 {
     use HasFactory;
 
     /**
      * @var string La tabla asociada al modelo.
      */
-    protected $table = 'people';
+    protected $table = 'profiles';
 
     /**
      * @var array Los atributos que no son asignables en masa.
@@ -31,20 +31,8 @@ class PeopleModel extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function customers()
+    public function user()
     {
-        return $this->hasOne(CustomerModel::class, 'people_id');
-    }
-
-    /**
-     * Relación uno a muchos con el modelo DeliveryModel.
-     *
-     * Una persona puede realizar múltiples entregas.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function deliveries()
-    {
-        return $this->hasMany(DeliveryModel::class, 'people_id');
+        return $this->hasOne(User::class, 'user_id');
     }
 }
