@@ -42,18 +42,6 @@ class DeliveryController extends Controller
         // Devuelve la vista 'delivery.index' con las entregas recuperadas
         return view('delivery.index', compact('deliveries'));
     }
-
-    /**
-     * Método para mostrar el formulario de creación de una nueva entrega.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        // Devuelve la vista 'delivery.create' para crear una nueva entrega
-        return view('delivery.create');
-    }
-
     /**
      * Método para almacenar una nueva entrega en la base de datos.
      *
@@ -62,6 +50,9 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->isMethod('get')) {
+            return view('delivery.create');
+        }
         // Valida los datos de la solicitud y crea una nueva entrega
         $this->dataServices->create($request->all());
         // Redirige al usuario a la ruta 'deliveries.index' después de almacenar la entrega
@@ -80,19 +71,6 @@ class DeliveryController extends Controller
         $delivery = $this->dataServices->getById($id);
         return view('delivery.show', compact('delivery'));
     }
-
-    /**
-     * Método para mostrar el formulario de edición de una entrega.
-     *
-     * @param DeliveryModel $delivery
-     * @return \Illuminate\View\View
-     */
-    public function edit(DeliveryModel $delivery)
-    {
-        // Pasa la entrega a la vista 'delivery.edit' para su edición
-        return view('delivery.edit', compact('delivery'));
-    }
-
     /**
      * Método para actualizar los datos de una entrega en la base de datos.
      *
@@ -102,6 +80,10 @@ class DeliveryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->isMethod('get')) {
+            $delivery = $this->dataServices->getById($id);
+            return view('delivery.edit', compact('delivery'));
+        }
         // Valida los datos de la solicitud y actualiza la entrega
         $delivery = $this->dataServices->update($id, $request->all());
         if (!$delivery) {

@@ -38,17 +38,6 @@ class CategoryController extends Controller
         $categories = $this->dataServices->getAll();
         return view('categories.index', compact('categories'));
     }
-
-    /**
-     * Muestra el formulario para crear una nueva categoría.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('categories.create');
-    }
-
     /**
      * Almacena una nueva categoría en la base de datos.
      *
@@ -57,6 +46,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->isMethod('get')){
+            return view('categories.create');
+        }
         $category = $this->dataServices->create($request->all());
         return redirect()->route('categories.index');
     }

@@ -34,20 +34,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $producs = $this->dataServices->getAll();
-        return view('producs.index', compact('producs'));
+        $products = $this->dataServices->getAll();
+        return view('products.index', compact('products'));
     }
-
-    /**
-     * Muestra el formulario para crear un nuevo produc.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('producs.create');
-    }
-
     /**
      * Almacena un nuevo produc en la base de datos.
      *
@@ -56,8 +45,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->isMethod('get')) {
+            return view('products.create');
+        }
         $produc = $this->dataServices->create($request->all());
-        return redirect()->route('producs.index');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -68,21 +60,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $produc = $this->dataServices->getById($id);
-        return view('producs.show', compact('produc'));
+        $product = $this->dataServices->getById($id);
+        return view('products.show', compact('product'));
     }
-
-    /**
-     * Muestra el formulario para editar un produc específico.
-     *
-     * @param  \App\Models\Produc  $produc
-     * @return \Illuminate\View\View
-     */
-    public function edit(ProductModel $produc)
-    {
-        return view('producs.edit', compact('produc'));
-    }
-
     /**
      * Actualiza los datos de un produc en la base de datos.
      *
@@ -92,11 +72,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->isMethod('get')) {
+            $product = $this->dataServices->getById($id);
+            return view('products.edit', compact('product'));
+        }
         $produc = $this->dataServices->update($id, $request->all());
         if (!$produc) {
-            abort(404, 'Produc not found');
+            abort(404, 'products not found');
         }
-        return redirect()->route('producs.index');
+        return redirect()->route('products.index');
     }
 
     /**
@@ -111,6 +95,6 @@ class ProductController extends Controller
         if (!$produc) {
             abort(404, 'Produc not found');
         }
-        return redirect()->route('producs.index');
+        return redirect()->route('products.index');
     }
 }

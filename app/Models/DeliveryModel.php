@@ -21,7 +21,7 @@ class DeliveryModel extends Model
      *
      * @var string
      */
-    protected $table = 'delivery';
+    protected $table = 'deliveries';
 
     /**
      * Los atributos que no son asignables masivamente.

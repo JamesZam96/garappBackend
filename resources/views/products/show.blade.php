@@ -8,14 +8,14 @@
 </head>
 <body>
     <h1>Detalles del Producto</h1>
-    <p>Nombre: {{ $produc->name }}</p>
-    <p>Descripción: {{ $produc->description }}</p>
-    <p>Precio: {{ $produc->price }}</p>
-    <a href="{{ route('producs.index') }}">Ir a la página principal de productos</a>
+    <p>Nombre: {{ $product->name }}</p>
+    <p>Descripción: {{ $product->description }}</p>
+    <p>Precio: {{ $product->price }}</p>
+    <a href="{{ route('products.index') }}">Ir a la página principal de productos</a>
     <br><br>
-    <a href="{{ route('producs.edit', $produc) }}">Editar</a>
+    <a href="{{ route('products.update', $product) }}">Editar</a>
 
-    <form action="{{ route('producs.destroy', $produc) }}" method="POST">
+    <form action="{{ route('products.destroy', $product) }}" method="POST">
         @csrf
         @method('DELETE')
         <br>

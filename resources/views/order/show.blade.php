@@ -12,7 +12,7 @@
     <p>Estado: {{ $order->state }}</p>
     <a href="{{ route('orders.index') }}">Ir a la página principal</a>
     <br><br>
-    <a href="{{ route('orders.edit', $order) }}">Editar</a>
+    <a href="{{ route('orders.update', $order) }}">Editar</a>
 
     <form action="{{ route('orders.destroy', $order) }}" method="POST">
         @csrf

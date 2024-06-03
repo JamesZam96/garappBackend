@@ -7,14 +7,14 @@
     <title>Editar Cliente</title>
 </head>
 <body>
-    <h1>Editar Cliente</h1>
-    <form action="{{ route('companys.update', $companys) }}" method="POST">
+    <h1>Editar </h1>
+    <form action="{{ route('warehouses.update', $warehouse) }}" method="POST">
         @csrf <!-- Directiva de Blade para agregar el token CSRF -->
         @method('patch') <!-- Utilizado para enviar el método PATCH -->
 
         <label>NIT:
             <br>
-            <input type="number" name="nit" value="{{ old('nit', $companys->nit) }}">
+            <input type="number" name="nit" value="{{ old('nit', $warehouses->nit) }}">
         </label>
         <br>
         <!-- Mostrar errores de validación -->
@@ -25,18 +25,18 @@
 
         <label>Nombre del Establecimiento:
             <br>
-            <input type="text" name="companyname" value="{{ old('companyname', $companys->companyname) }}">
+            <input type="text" name="name" value="{{ old('name', $warehouses->name) }}">
         </label>
         <br>
         <!-- Mostrar errores de validación -->
-        @error('companyname')
+        @error('name')
             <span>{{ $message }}</span>
             <br><br>
         @enderror
 
         <label>Dirección:
             <br>
-            <input type="text" name="address" value="{{ old('address', $companys->address) }}">
+            <input type="text" name="address" value="{{ old('address', $warehouses->address) }}">
         </label>
         <br>
         <!-- Mostrar errores de validación -->
@@ -47,7 +47,7 @@
 
         <label>Correo:
             <br>
-            <input type="text" name="email" value="{{ old('email', $companys->email) }}">
+            <input type="text" name="email" value="{{ old('email', $warehouses->email) }}">
         </label>
         <br>
         <!-- Mostrar errores de validación -->

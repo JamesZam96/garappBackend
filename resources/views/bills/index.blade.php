@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Lista de Facturas</h1>
-    <a href="{{ route('bills.create') }}">Crear una nueva factura</a>
+    <a href="/customers/create">Crear una nueva factura</a>
     <ul>
         @foreach ($bills as $bill)
             <li>

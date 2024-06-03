@@ -12,7 +12,7 @@
     <p>Total: {{ $bill->totalprice }}</p>
     <a href="{{ route('bills.index') }}">Ir a la página principal de facturas</a>
     <br><br>
-    <a href="{{ route('bills.edit', $bill) }}">Editar</a>
+    <a href="{{ route('bills.update', $bill) }}">Editar</a>
 
     <form action="{{ route('bills.destroy', $bill) }}" method="POST">
         @csrf

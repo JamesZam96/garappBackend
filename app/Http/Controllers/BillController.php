@@ -37,17 +37,6 @@ class BillController extends Controller
         $bills = $this->dataServices->getAll();
         return view('bills.index', compact('bills'));
     }
-
-    /**
-     * Muestra el formulario para crear una nueva factura.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('bills.create');
-    }
-
     /**
      * Almacena una nueva factura en la base de datos.
      *
@@ -56,6 +45,9 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->isMethod('get')){
+            return view('bills.create');
+        }
         $bill = $this->dataServices->create($request->all());
         return redirect()->route('bills.index');
     }
@@ -92,6 +84,10 @@ class BillController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->isMethod('get')) {
+            $bill = $this->dataServices->getById($id);
+            return view('bills.edit', compact('bill'));
+        }
         $bill = $this->dataServices->update($id, $request->all());
         if (!$bill) {
             abort(404, 'Bill not found');

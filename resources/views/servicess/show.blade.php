@@ -13,7 +13,7 @@
     <p>Precio: {{ $service->price }}</p>
     <a href="{{ route('services.index') }}">Ir a la página principal</a>
     <br><br>
-    <a href="{{ route('services.edit', $service) }}">Editar</a>
+    <a href="{{ route('services.update', $service) }}">Editar</a>
 
     <form action="{{ route('services.destroy', $service) }}" method="POST">
         @csrf

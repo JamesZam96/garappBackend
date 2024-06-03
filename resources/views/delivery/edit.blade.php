@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>En esta pagina podras editar una orden</h1>
-    <form action="{{ route('deliverys.update' , $delivery) }}" method="POST">
+    <form action="{{ route('deliveries.update' , $delivery) }}" method="POST">
     @csrf
         @method('patch')
         <label >Numero de licencia

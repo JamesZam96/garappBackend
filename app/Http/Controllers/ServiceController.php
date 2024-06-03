@@ -37,17 +37,6 @@ class ServiceController extends Controller
         $services = $this->dataServices->getAll();
         return view('servicess.index', compact('services'));
     }
-
-    /**
-     * Muestra el formulario para crear un nuevo servicio.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('servicess.create');
-    }
-
     /**
      * Almacena un nuevo servicio en la base de datos.
      *
@@ -56,6 +45,9 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->isMethod('get')) {
+            return view('servicess.create');
+        }
         $service = $this->dataServices->create($request->all());
         return redirect()->route('services.index');
     }
@@ -71,18 +63,6 @@ class ServiceController extends Controller
         $service = $this->dataServices->getById($id);
         return view('servicess.show', compact('service'));
     }
-
-    /**
-     * Muestra el formulario para editar un servicio específico.
-     *
-     * @param  \App\Models\ServiceModel  $service
-     * @return \Illuminate\View\View
-     */
-    public function edit(ServiceModel $service)
-    {
-        return view('servicess.edit', compact('service'));
-    }
-
     /**
      * Actualiza los datos de un servicio en la base de datos.
      *
@@ -92,6 +72,10 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->isMethod('get')) {
+            $service = $this->dataServices->getById($id);
+            return view('servicess.edit', compact('service'));
+        }
         $service = $this->dataServices->update($id, $request->all());
         if (!$service) {
             abort(404, 'Service not found');

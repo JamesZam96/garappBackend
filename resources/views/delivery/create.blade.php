@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>crear un repartidor</h1>
-    <form action="{{route('deliverys.store')}}" method="POST">
+    <form action="{{route('deliveries.store')}}" method="POST">
         @csrf
         <label >Numero de licencia
             <br>

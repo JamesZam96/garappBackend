@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Regístrate como categoría</h1>
-    <a href="{{ route('categorys.create') }}">Crear una categoría</a>
+    <a href="/customers/create">Crear una categoría</a>
     <ul>
         @foreach ($categories as $category)
             <li><a href="{{ route('categorys.show', $category->id) }}">{{ $category->name }}</a></li>

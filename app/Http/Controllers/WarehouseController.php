@@ -47,14 +47,6 @@ class WarehouseController extends Controller
      * Método para mostrar el formulario de creación de un nuevo almacén.
      *
      * @return \Illuminate\View\View
-     */
-    // public function create()
-    // {
-    //     // Devuelve la vista 'warehouse.create' para crear un nuevo almacén
-    //     return view('warehouse.create');
-    // }
-
-    /**
      * Método para almacenar un nuevo almacén en la base de datos.
      *
      * @param \Illuminate\Http\Request $request
@@ -68,7 +60,7 @@ class WarehouseController extends Controller
         // Valida los datos de la solicitud y crea un nuevo almacén
         $this->dataServices->create($request->all());
         // Redirige al usuario a la ruta 'warehouse.index' después de almacenar el almacén
-        return redirect()->route('warehouse.index');
+        return redirect()->route('warehouses.index');
     }
 
     /**
@@ -83,19 +75,6 @@ class WarehouseController extends Controller
         $warehouse = $this->dataServices->getById($id);
         return view('warehouse.show', compact('warehouse'));
     }
-
-    /**
-     * Método para mostrar el formulario de edición de un almacén.
-     *
-     * @param WarehouseModel $warehouse
-     * @return \Illuminate\View\View
-     */
-    public function edit(WarehouseModel $warehouse)
-    {
-        // Pasa el almacén a la vista 'warehouse.edit' para su edición
-        return view('warehouse.edit', compact('warehouse'));
-    }
-
     /**
      * Método para actualizar los datos de un almacén en la base de datos.
      *
@@ -105,6 +84,10 @@ class WarehouseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->isMethod('get')) {
+            $warehouse = $this->dataServices->getById($id);
+            return view('warehouse.edit', compact('warehouse'));
+        }
         // Valida los datos de la solicitud y actualiza el almacén
         $warehouse = $this->dataServices->update($id, $request->all());
         if (!$warehouse) {
@@ -130,6 +113,6 @@ class WarehouseController extends Controller
             abort(404, 'Warehouse not found');
         }
         // Redirige al usuario a la ruta 'warehouse.index' después de eliminar el almacén
-        return redirect()->route('warehouse.index');
+        return redirect()->route('warehouses.index');
     }
 }

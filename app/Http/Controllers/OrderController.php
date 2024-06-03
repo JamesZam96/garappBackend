@@ -49,7 +49,7 @@ class OrderController extends Controller
             return view('order.create');
         }
         $order = $this->dataServices->create($request->all());
-        return redirect()->route('order.index');
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -63,18 +63,6 @@ class OrderController extends Controller
         $order = $this->dataServices->getById($id);
         return view('order.show', compact('order'));
     }
-
-    /**
-     * Muestra el formulario para editar una orden específica.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\View\View
-     */
-    public function edit(OrderModel $order)
-    {
-        return view('order.edit', compact('order'));
-    }
-
     /**
      * Actualiza los datos de una orden en la base de datos.
      *
@@ -84,11 +72,15 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->isMethod('get')) {
+            $order = $this->dataServices->getById($id);
+            return view('order.edit', compact('order'));
+        }
         $order = $this->dataServices->update($id, $request->all());
         if (!$order) {
             abort(404, 'Order not found');
         }
-        return redirect()->route('order.index');
+        return redirect()->route('orders.index');
     }
 
     /**
@@ -103,6 +95,6 @@ class OrderController extends Controller
         if (!$order) {
             abort(404, 'Order not found');
         }
-        return redirect()->route('order.index');
+        return redirect()->route('orders.index');
     }
 }

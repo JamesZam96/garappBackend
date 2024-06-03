@@ -12,7 +12,7 @@
     <ul>
         @foreach ($orders as $order)
             <li>
-                <a href="{{ route('order.show', $order->id) }}">Detalle de Orden: {{ $order->id }}</a>
+                <a href="{{ route('orders.show', $order->id) }}">Detalle de Orden: {{ $order->id }}</a>
                 <p>Fecha: {{ $order->date }}</p>
                 <p>Estado: {{ $order->state }}</p>
             </li>

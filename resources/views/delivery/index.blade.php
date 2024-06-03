@@ -8,10 +8,10 @@
 </head>
 <body>
     <h1>Registrate como repartidor</h1>
-    <a href="{{route('deliverys.create')}}">crear repartidor</a>
-    @foreach ($deliverys as $delivery)
-    <li><a href="{{route('deliverys.show', $delivery->id)}}">{{$delivery->licenseNumber}}</a></li>
-        {{$deliverys->links()}}
+    <a href="/deliveries/create">crear repartidor</a>
+    @foreach ($deliveries as $delivery)
+    <li><a href="{{route('deliveries.show', $delivery->id)}}">{{$delivery->licenseNumber}}</a></li>
+        {{$deliveries->links()}}
     @endforeach
     
 </body>

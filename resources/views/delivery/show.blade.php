@@ -9,11 +9,11 @@
 <body>
     <h1>Numero{{$delivery->id}}</h1>
     <p>Numero de licencia{{$delivery->licenseNumber}}</p>
-    <a href="{{route('deliverys.index')}}">Ir a la pagina principal</a>
+    <a href="{{route('deliveries.index')}}">Ir a la pagina principal</a>
     <br><br>
-    <a href="{{route('deliverys.edit' , $delivery)}}">Editar</a>
+    <a href="{{route('deliveries.update' , $delivery)}}">Editar</a>
 
-    <form action="{{route('deliverys.destroy', $delivery)}}" method="POST">
+    <form action="{{route('deliveries.destroy', $delivery)}}" method="POST">
         @csrf
         @method('DELETE')
     <br>

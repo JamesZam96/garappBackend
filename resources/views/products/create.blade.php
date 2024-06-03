@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Editar Producto</title>
+    <title>Página para crear un nuevo producto</title>
 </head>
 <body>
-    <h1>Editar Producto</h1>
-    <form action="{{ route('producs.update', $produc) }}" method="POST">
+    <h1>Aquí podrás crear un nuevo producto</h1>
+    <form action="{{ route('products.store') }}" method="POST">
         @csrf
-        @method('patch')
         <label>Nombre:
             <br>
-            <input type="text" name="name" value="{{ old('name', $produc->name) }}">
+            <input type="text" name="name" value="{{ old('name') }}">
         </label>
         <br>
         @error('name')
@@ -22,7 +21,7 @@
         <br>
         <label>Descripción:
             <br>
-            <input type="text" name="description" value="{{ old('description', $produc->description) }}">
+            <input type="text" name="description" value="{{ old('description') }}">
         </label>
         <br>
         @error('description')
@@ -31,14 +30,14 @@
         <br>
         <label>Precio:
             <br>
-            <input type="number" name="price" value="{{ old('price', $produc->price) }}">
+            <input type="number" name="price" value="{{ old('price') }}">
         </label>
         <br>
         @error('price')
             <span>{{ $message }}</span>
         @enderror
         <br><br>
-        <button type="submit">Actualizar Producto</button>
+        <button type="submit">Crear producto</button>
     </form>
 </body>
 </html>

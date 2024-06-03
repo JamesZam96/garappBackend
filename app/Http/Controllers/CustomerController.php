@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\DataServices;
 use App\Models\CustomerModel;
 use App\Models\PeopleModel;
+use App\Models\ProfileModel;
 use Illuminate\Http\Request;
 
 /**
@@ -48,7 +49,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $people = PeopleModel::all();
+        $people = ProfileModel::all();
         return view('customer.create', compact('people'));
     }
 
@@ -60,6 +61,9 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->isMethod('get')){
+            return view('bills.create');
+        }
         $this->dataServices->create($request->all());
         return redirect()->route('customers.index');
     }

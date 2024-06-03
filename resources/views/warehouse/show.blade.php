@@ -8,18 +8,18 @@
 </head>
 <body>
     <h1>Detalles del Establecimiento</h1>
-    <p>NIT: {{ $companys->nit }}</p>
-    <p>Nombre del Establecimiento: {{ $companys->companyname }}</p>
+    <p>NIT: {{ $warehouse->nit }}</p>
+    <p>Nombre del Establecimiento: {{ $warehouse->name }}</p>
     
     <!-- Enlace para volver a la página principal -->
-    <a href="{{ route('companys.index') }}">Ir a la página principal</a>
+    <a href="{{ route('warehouses.index') }}">Ir a la página principal</a>
     <br><br>
 
     <!-- Enlace para editar el establecimiento -->
-    <a href="{{ route('companys.edit', $companys) }}">Editar</a>
+    <a href="{{ route('warehouses.update', $warehouse) }}">Editar</a>
 
     <!-- Formulario para eliminar el establecimiento -->
-    <form action="{{ route('companys.destroy', $companys) }}" method="POST">
+    <form action="{{ route('warehouses.destroy', $warehouse) }}" method="POST">
         @csrf
         @method('DELETE')
 

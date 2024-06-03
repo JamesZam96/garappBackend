@@ -6,6 +6,7 @@ use App\Http\Requests\StorePeople;
 use App\Http\Services\DataServices;
 use App\Models\CustomerModel;
 use App\Models\PeopleModel;
+use App\Models\ProfileModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class ProfileController extends Controller
      */
     public function __construct()
     {
-        $this->dataServices = new DataServices(new User());
+        $this->dataServices = new DataServices(new ProfileModel());
     }
 
     /**
@@ -37,9 +38,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = $this->dataServices->getAll();
-        $customers = CustomerModel::with('people')->get();
-        return view('people.index', compact('user', 'customers'));
+        $profiles = $this->dataServices->getAll();
+        $customers = CustomerModel::with('profile')->get();
+        return view('profile.index', compact('profiles', 'customers'));
     }
     /**
      * Almacena una nueva persona en la base de datos.
@@ -50,12 +51,13 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('get')) {
-
-            return view('people.create');
+            $user = User::all();
+            return view('profile.create', compact('user'));
         }
 
-        $people = $this->dataServices->create($request->all());
-        return redirect()->route('peoples.index');
+        $profile = $this->dataServices->create($request->all());
+        
+        return redirect()->route('profiles.index');
     }
 
     /**
@@ -66,21 +68,9 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $people = $this->dataServices->getById($id);
-        return view('people.show', compact('people'));
+        $profile = $this->dataServices->getById($id);
+        return view('profile.show', compact('profile'));
     }
-
-    /**
-     * Muestra el formulario para editar una persona específica.
-     *
-     * @param  \App\Models\PeopleModel  $people
-     * @return \Illuminate\View\View
-     */
-    public function edit(PeopleModel $people)
-    {
-        return view('people.edit', compact('people'));
-    }
-
     /**
      * Actualiza los datos de una persona en la base de datos.
      *
@@ -90,11 +80,15 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $people = $this->dataServices->update($id, $request->all());
-        if (!$people) {
+        if ($request->isMethod('get')) {
+            $profile = $this->dataServices->getById($id);
+            return view('profile.edit', compact('profile'));
+        }
+        $profile = $this->dataServices->update($id, $request->all());
+        if (!$profile) {
             abort(404, 'Order not found');
         }
-        return redirect()->route('peoples.index');
+        return redirect()->route('profiles.index');
     }
 
     /**
@@ -105,10 +99,10 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        $people = $this->dataServices->delete($id);
-        if (!$people) {
+        $profile = $this->dataServices->delete($id);
+        if (!$profile) {
             abort(404, 'Order not found');
         }
-        return redirect()->route('peoples.index');
+        return redirect()->route('profiles.index');
     }
 }

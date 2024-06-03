@@ -21,7 +21,7 @@ class WarehouseModel extends Model
      *
      * @var string
      */
-    protected $table = 'companies';
+    protected $table = 'warehouses';
 
     /**
      * Los atributos que no son asignables masivamente.

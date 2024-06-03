@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Aqui podras crear un people</h1>
-    <form action="{{route('peoples.store')}}" method="POST">
+    <form action="{{route('profiles.store')}}" method="POST">
         @csrf
         <label >Nombre completo
             <br>
