@@ -17,6 +17,7 @@ require __DIR__ . '/products.php';
 require __DIR__ . '/services.php';
 require __DIR__ . '/bills.php';
 require __DIR__ . '/auth.php';
+require __DIR__ . '/workshop.php';
 
 
 

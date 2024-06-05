@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\DataServices;
-use App\Models\WorkshopModel;
+use App\Models\User;
 use App\Models\WorkshopsModel;
 use Illuminate\Http\Request;
 
@@ -35,7 +35,8 @@ class WorkshopController extends Controller
      */
     public function index()
     {
-        $workshops = $this->dataServices->getAll();
+        // $workshops = $this->dataServices->getAll();
+        $workshops = WorkshopsModel::all();
         return view('workshop.index', compact('workshops'));
     }
 
@@ -47,8 +48,12 @@ class WorkshopController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->isMethod('get')) {
-            return view('workshop.create');
+        
+        if($request->isMethod('get')){
+
+            $users = User::all();
+
+            return view('workshop.create', compact("users"));
         }
         $workshop = $this->dataServices->create($request->all());
         return redirect()->route('workshop.index');
@@ -74,10 +79,11 @@ class WorkshopController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
-    {
+    { 
         if ($request->isMethod('get')) {
+            $users = User::all();
             $workshop = $this->dataServices->getById($id);
-            return view('workshop.edit', compact('workshop'));
+            return view('workshop.edit', compact('workshop',"users"));
         }
         $workshop = $this->dataServices->update($id, $request->all());
         if (!$workshop) {

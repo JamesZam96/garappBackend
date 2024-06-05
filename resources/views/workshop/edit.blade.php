@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Editar taller</h1>
-    <form action="{{ route('workshop.update', $workshop) }}" method="POST">
+    <form action="{{ route('workshops.update', $workshop) }}" method="POST">
         @csrf
         @method('patch')
         <label>NIT

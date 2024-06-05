@@ -14,7 +14,7 @@
     <p>Correo electrónico: {{ $workshop->email }}</p>
     <p>Teléfono: {{ $workshop->phone }}</p>
     
-    <a href="{{ route('workshops.index') }}">Ir a la página principal</a>
+    <a href="{{ route('workshop.index') }}">Ir a la página principal</a>
     <br><br>
 
     <a href="{{ route('workshops.update', $workshop) }}">Editar</a>

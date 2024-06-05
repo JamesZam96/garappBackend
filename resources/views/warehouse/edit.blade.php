@@ -14,7 +14,7 @@
 
         <label>NIT:
             <br>
-            <input type="number" name="nit" value="{{ old('nit', $warehouses->nit) }}">
+            <input type="number" name="nit" value="{{ old('nit', $warehouse->nit) }}">
         </label>
         <br>
         <!-- Mostrar errores de validación -->
@@ -25,7 +25,7 @@
 
         <label>Nombre del Establecimiento:
             <br>
-            <input type="text" name="name" value="{{ old('name', $warehouses->name) }}">
+            <input type="text" name="name" value="{{ old('name', $warehouse->name) }}">
         </label>
         <br>
         <!-- Mostrar errores de validación -->
@@ -36,7 +36,7 @@
 
         <label>Dirección:
             <br>
-            <input type="text" name="address" value="{{ old('address', $warehouses->address) }}">
+            <input type="text" name="address" value="{{ old('address', $warehouse->address) }}">
         </label>
         <br>
         <!-- Mostrar errores de validación -->
@@ -47,7 +47,7 @@
 
         <label>Correo:
             <br>
-            <input type="text" name="email" value="{{ old('email', $warehouses->email) }}">
+            <input type="text" name="email" value="{{ old('email', $warehouse->email) }}">
         </label>
         <br>
         <!-- Mostrar errores de validación -->

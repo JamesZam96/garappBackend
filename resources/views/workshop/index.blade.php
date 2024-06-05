@@ -21,7 +21,5 @@
             </li>
         @endforeach
     </ul>
-    
-    {{ $workshops->links() }} 
 </body>
 </html>

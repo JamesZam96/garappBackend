@@ -95,7 +95,7 @@ class WarehouseController extends Controller
             abort(404, 'Warehouse not found');
         }
         // Redirige al usuario a la ruta 'warehouse.index' después de actualizar el almacén
-        return redirect()->route('warehouse.index');
+        return redirect()->route('warehouses.index');
     }
 
     /**

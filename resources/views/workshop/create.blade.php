@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Crear taller</h1>
-    <form action="{{ route('workshop.store') }}" method="POST">
+    <form action="{{ route('workshops.store') }}" method="POST">
         @csrf
         <label >NIT
             <br>
