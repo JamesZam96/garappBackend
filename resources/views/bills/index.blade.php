@@ -7,6 +7,7 @@
     <title>Bienvenido a la página principal de facturas</title>
 </head>
 <body>
+    
     <h1>Lista de Facturas</h1>
     <a href="/customers/create">Crear una nueva factura</a>
     <ul>
@@ -19,5 +20,6 @@
         @endforeach
     </ul>
     {{ $bills->links() }}
+    <x-button label='hola'/>
 </body>
 </html>
